@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl" id="htmlRoot">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>عبید گرافکس | ہماری خدمات – لوگو، برانڈنگ، سوشل میڈیا ڈیزائن</title>
+  <meta name="description" content="عبید گرافکس کی پیشہ ورانہ ڈیزائن سروسز - لوگو ڈیزائن، بزنس کارڈز، سوشل میڈیا پوسٹس، برانڈنگ، فلائرز، بینرز، یوٹیوب تھمب نیلز اور اسلامی پوسٹرز۔"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #050d1a;
+      --navy-2: #091427;
+      --navy-3: #0d1e38;
+      --navy-card: #0b1a30;
+      --sky: #38bdf8;
+      --royal: #2563eb;
+      --silver: #c8d6e5;
+      --white: #f0f6ff;
+      --muted: #6b89aa;
+      --border: rgba(56, 189, 248, 0.13);
+      --glow-sky: rgba(56, 189, 248, 0.20);
+      --glow-royal: rgba(37, 99, 235, 0.24);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --tr: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-ur: 'Noto Nastaliq Urdu', serif;
+      --font-en: 'Syne', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: var(--font-ur);
+      background: var(--navy);
+      color: var(--silver);
+      line-height: 1.9;
+      overflow-x: hidden;
+      direction: rtl;
+    }
+    body.lang-en {
+      font-family: var(--font-body);
+      direction: ltr;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul {
+      list-style: none;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--navy-2);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--royal);
+      border-radius: 99px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-en);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--sky);
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    body.lang-en .section-label {
+      font-family: var(--font-en);
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--sky);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.25;
+      margin-top: .5rem;
+    }
+    body.lang-en .section-title {
+      font-family: var(--font-en);
+      line-height: 1.15;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin-top: .8rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .8rem 1.9rem;
+      border-radius: 99px;
+      font-weight: 600;
+      font-size: .95rem;
+      transition: var(--tr);
+      font-family: var(--font-en);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--royal), var(--sky));
+      color: #fff;
+      box-shadow: 0 6px 28px var(--glow-royal);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px var(--glow-sky);
+    }
+    .btn-outline {
+      border: 1.5px solid var(--border);
+      color: var(--silver);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(8px);
+    }
+    .btn-outline:hover {
+      border-color: var(--sky);
+      color: var(--sky);
+      transform: translateY(-2px);
+    }
+    .btn-sm {
+      padding: .5rem 1.2rem;
+      font-size: .82rem;
+    }
+
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 3px;
+      overflow: hidden;
+    }
+    .lang-btn {
+      padding: .35rem .9rem;
+      border-radius: 99px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--muted);
+      transition: var(--tr);
+      font-family: var(--font-en);
+    }
+    .lang-btn.active {
+      background: var(--royal);
+      color: #fff;
+      box-shadow: 0 2px 12px var(--glow-royal);
+    }
+
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: background var(--tr), box-shadow var(--tr);
+    }
+    #navbar.scrolled {
+      background: rgba(5, 13, 26, 0.93);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 2px 40px rgba(0, 0, 0, 0.4);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex-shrink: 0;
+    }
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--royal), var(--sky));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-en);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #fff;
+      box-shadow: 0 4px 18px var(--glow-royal);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .brand-text {
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+    .brand-sub {
+      font-family: var(--font-en);
+      font-size: .68rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+    }
+    .nav-links a {
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--silver);
+      transition: color var(--tr);
+      position: relative;
+      font-family: var(--font-en);
+      white-space: nowrap;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--sky);
+      border-radius: 2px;
+      transition: width var(--tr);
+    }
+    body[dir="rtl"] .nav-links a::after {
+      left: auto;
+      right: 0;
+    }
+    .nav-links a:hover {
+      color: var(--sky);
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active-link::after {
+      width: 100%;
+    }
+    .nav-links a.active-link {
+      color: var(--sky);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-cta {
+      padding: .5rem 1.3rem;
+      font-size: .82rem;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--silver);
+      border-radius: 2px;
+      transition: var(--tr);
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(5, 13, 26, 0.97);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-nav.open {
+      display: flex;
+    }
+    .mobile-nav a {
+      font-family: var(--font-en);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .mobile-nav a:hover {
+      color: var(--sky);
+    }
+    .mobile-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      color: var(--muted);
+    }
+
+    /* ── PAGE HERO ──────────────────────────────────────────────── */
+    #pageHero {
+      min-height: 35vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 65% 40%, rgba(37, 99, 235, 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 25% 70%, rgba(56, 189, 248, 0.10) 0%, transparent 55%);
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: .045;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .hero-inner .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(56, 189, 248, 0.10);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      border-radius: 99px;
+      padding: .4rem 1rem;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--sky);
+      letter-spacing: .06em;
+      margin-bottom: 1.4rem;
+      font-family: var(--font-en);
+    }
+    .hero-inner .hero-heading {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--white);
+    }
+    body.lang-en .hero-inner .hero-heading {
+      font-family: var(--font-en);
+      line-height: 1.05;
+    }
+    .hero-inner .hero-heading span.gradient-text {
+      background: linear-gradient(135deg, var(--sky), var(--royal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-inner .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 1.3rem auto 0;
+      max-width: 600px;
+      line-height: 1.9;
+    }
+    body.lang-en .hero-inner .hero-sub {
+      line-height: 1.75;
+    }
+
+    /* ── SERVICES DETAIL ────────────────────────────────────── */
+    #servicesDetail {
+      background: var(--navy-2);
+      padding: 40px 0 80px;
+    }
+    .service-detail-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 2.5rem;
+      margin-bottom: 1.5rem;
+      transition: var(--tr);
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .service-detail-card:hover {
+      border-color: rgba(56, 189, 248, 0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+    }
+    .service-detail-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(56, 189, 248, 0.14));
+      border: 1px solid rgba(56, 189, 248, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .service-detail-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .service-detail-content h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .3rem;
+    }
+    body.lang-en .service-detail-content h3 {
+      font-family: var(--font-en);
+    }
+    .service-detail-content p {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+    body.lang-en .service-detail-content p {
+      line-height: 1.7;
+    }
+    .service-detail-action {
+      flex-shrink: 0;
+    }
+    .service-detail-action .btn {
+      padding: .6rem 1.2rem;
+      font-size: .8rem;
+      white-space: nowrap;
+    }
+
+    /* ── MODAL ────────────────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(5, 13, 26, 0.92);
+      backdrop-filter: blur(16px);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      animation: fadeIn .3s ease;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .modal-content {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-width: 720px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2.5rem;
+      position: relative;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--tr);
+      font-family: var(--font-en);
+    }
+    body[dir="ltr"] .modal-close {
+      left: auto;
+      right: 1rem;
+    }
+    .modal-close:hover {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: #ef4444;
+      color: #fca5a5;
+    }
+    .modal-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(56, 189, 248, 0.14));
+      border: 1px solid rgba(56, 189, 248, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .modal-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .modal-content h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    body.lang-en .modal-content h2 {
+      font-family: var(--font-en);
+    }
+    .modal-content .modal-desc {
+      font-size: 1rem;
+      color: var(--silver);
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+    }
+    body.lang-en .modal-content .modal-desc {
+      line-height: 1.8;
+    }
+    .modal-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-features span {
+      padding: .3rem 1rem;
+      border-radius: 99px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.12);
+      font-size: .8rem;
+      color: var(--sky);
+      font-family: var(--font-en);
+    }
+    .modal-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: .8rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-images .modal-img {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--navy-2);
+      border: 1px solid var(--border);
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: var(--muted);
+    }
+    .modal-images .modal-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .modal-actions {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      margin-top: .5rem;
+    }
+    .modal-actions .btn {
+      padding: .7rem 1.8rem;
+      font-size: .9rem;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--navy-2);
+      border-top: 1px solid var(--border);
+      padding: 3.5rem 0 1.8rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-brand p {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-top: .9rem;
+      max-width: 270px;
+    }
+    .footer-col h4 {
+      font-family: var(--font-en);
+      font-weight: 700;
+      color: var(--white);
+      font-size: .92rem;
+      margin-bottom: 1.1rem;
+    }
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+    .footer-col ul li a {
+      font-size: .86rem;
+      color: var(--muted);
+      transition: color var(--tr);
+      font-family: var(--font-en);
+    }
+    .footer-col ul li a:hover {
+      color: var(--sky);
+    }
+    .social-icons {
+      display: flex;
+      gap: .65rem;
+      margin-top: 1.1rem;
+    }
+    .s-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+      color: var(--muted);
+      transition: var(--tr);
+      font-family: var(--font-en);
+      font-weight: 700;
+    }
+    .s-icon:hover {
+      background: var(--royal);
+      border-color: var(--royal);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .8rem;
+    }
+    .footer-bottom p {
+      font-size: .83rem;
+      color: var(--muted);
+    }
+    .footer-bottom span {
+      color: var(--sky);
+    }
+
+    .float-wa {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 900;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.4);
+      color: #fff;
+      font-size: 1.45rem;
+      transition: var(--tr);
+      animation: fb 3s ease-in-out infinite;
+    }
+    body[dir="ltr"] .float-wa {
+      left: auto;
+      right: 2rem;
+    }
+    .float-wa:hover {
+      transform: scale(1.12);
+    }
+    @keyframes fb {
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+      50% {
+        transform: translateY(-7px)
+      }
+    }
+    .float-wa::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(37, 211, 102, 0.4);
+      animation: rip 2s ease-out infinite;
+    }
+    @keyframes rip {
+      0% {
+        transform: scale(1);
+        opacity: 1
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #pageLoader {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .4s ease;
+    }
+    #pageLoader .spin {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 3px solid rgba(56, 189, 248, 0.18);
+      border-top-color: var(--sky);
+      animation: sp .8s linear infinite;
+    }
+    @keyframes sp {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    #pageLoader.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ── SCROLLBAR STYLING FOR MODAL ───────────────────────── */
+    .modal-content::-webkit-scrollbar {
+      width: 4px;
+    }
+    .modal-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .modal-content::-webkit-scrollbar-thumb {
+      background: var(--royal);
+      border-radius: 99px;
+    }
+
+    @media(max-width:1024px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media(max-width:820px) {
+      .service-detail-card {
+        grid-template-columns: 60px 1fr;
+        gap: 1rem;
+        padding: 1.2rem 1.5rem;
+      }
+      .service-detail-action {
+        grid-column: 1 / -1;
+        text-align: center;
+      }
+      .service-detail-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+      }
+      .service-detail-content h3 {
+        font-size: 1rem;
+      }
+      .service-detail-content p {
+        font-size: .82rem;
+      }
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-brand p {
+        max-width: 100%;
+      }
+      .modal-content {
+        padding: 1.5rem;
+        max-height: 95vh;
+      }
+      .modal-content h2 {
+        font-size: 1.3rem;
+      }
+      .modal-images {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
+    }
+    @media(max-width:480px) {
+      .service-detail-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 1.2rem;
+      }
+      .service-detail-icon {
+        margin: 0 auto;
+      }
+      .hero-inner .hero-heading {
+        font-size: 1.8rem;
+      }
+      .modal-content {
+        padding: 1.2rem;
+      }
+      .modal-images {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="pageLoader"><div class="spin"></div></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-mark" id="navLogoMark">UG</div>
+      <div>
+        <div class="brand-text" id="navBrandText">Ubaid Graphics</div>
+        <div class="brand-sub" id="navSub">تخلیقی ڈیزائن اسٹوڈیو</div>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" data-ur="ہوم" data-en="Home">ہوم</a></li>
+      <li><a href="services.html" class="active-link" data-ur="سروسز" data-en="Services">سروسز</a></li>
+      <li><a href="index.html#portfolio" data-ur="پورٹ فولیو" data-en="Portfolio">پورٹ فولیو</a></li>
+      <li><a href="index.html#about" data-ur="ہمارے بارے" data-en="About">ہمارے بارے</a></li>
+      <li><a href="index.html#contact" data-ur="رابطہ" data-en="Contact">رابطہ</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btnUr" onclick="setLang('ur')">اردو</button>
+        <button class="lang-btn" id="btnEn" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="index.html#contact" class="btn btn-primary nav-cta" id="navCta">کوٹیشن لیں</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="index.html" onclick="closeMob()" data-ur="ہوم" data-en="Home">ہوم</a>
+  <a href="services.html" onclick="closeMob()" data-ur="سروسز" data-en="Services">سروسز</a>
+  <a href="index.html#portfolio" onclick="closeMob()" data-ur="پورٹ فولیو" data-en="Portfolio">پورٹ فولیو</a>
+  <a href="index.html#about" onclick="closeMob()" data-ur="ہمارے بارے" data-en="About">ہمارے بارے</a>
+  <a href="index.html#contact" onclick="closeMob()" data-ur="رابطہ" data-en="Contact">رابطہ</a>
+  <a href="#" id="mobWaLink" target="_blank" class="btn btn-primary">WhatsApp</a>
+</div>
+
+<!-- PAGE HERO -->
+<section id="pageHero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-badge" id="pageBadge">✦ ہماری خدمات</div>
+      <h1 class="hero-heading">
+        <span id="heroTitle">پریمیم ڈیزائن</span><br/>
+        <span class="gradient-text" id="heroTitle2">سروسز</span>
+      </h1>
+      <p class="hero-sub" id="heroSub">برانڈ شناخت سے سوشل میڈیا تک — ہر ڈیزائن میں اثر اور پیشہ واریت کی ضمانت۔</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES DETAIL -->
+<section id="servicesDetail">
+  <div class="container" id="servicesList"></div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="serviceModal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-icon" id="modalIcon">🎨</div>
+    <h2 id="modalTitle">لوگو ڈیزائن</h2>
+    <p class="modal-desc" id="modalDesc">مکمل تفصیل یہاں آئے گی۔</p>
+    <div class="modal-features" id="modalFeatures"></div>
+    <div class="modal-images" id="modalImages"></div>
+    <div class="modal-actions">
+      <a href="index.html#contact" class="btn btn-primary" id="modalQuoteBtn">کوٹیشن لیں</a>
+      <a href="index.html#portfolio" class="btn btn-outline" id="modalPortfolioBtn">ہمارے کام دیکھیں</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="logo-mark" id="footerLogoMark">UG</div>
+          <div>
+            <div class="brand-text" id="footerBrandText">Ubaid Graphics</div>
+            <div class="brand-sub">Creative Design Studio</div>
+          </div>
+        </div>
+        <p id="footerDesc"></p>
+        <div class="social-icons">
+          <a href="#" id="fbLink" class="s-icon">f</a>
+          <a href="#" id="igLink" class="s-icon">📸</a>
+          <a href="#" id="liLink" class="s-icon">in</a>
+          <a href="#" id="footerWaLink" class="s-icon">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 id="f1h">سروسز</h4>
+        <ul id="footerServicesList"></ul>
+      </div>
+      <div class="footer-col">
+        <h4 id="f2h">فوری لنکس</h4>
+        <ul>
+          <li><a href="index.html" id="f2l1">ہوم</a></li>
+          <li><a href="services.html" id="f2l2">سروسز</a></li>
+          <li><a href="index.html#portfolio" id="f2l3">پورٹ فولیو</a></li>
+          <li><a href="index.html#about" id="f2l4">ہمارے بارے</a></li>
+          <li><a href="index.html#contact" id="f2l5">رابطہ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 id="f3h">رابطہ</h4>
+        <ul>
+          <li><a href="#" id="footerPhoneLink">03278992381</a></li>
+          <li><a href="#" id="footerEmailLink">ubaidullah2381@gmail.com</a></li>
+          <li><a href="#" id="footerAddrLink">Pakistan 🇵🇰</a></li>
+          <li><a href="#" id="footerWaLink2">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 <span id="footerBrandSpan">Ubaid Graphics</span>. <span id="footerRights">جملہ حقوق محفوظ ہیں۔</span> ❤️ پاکستان میں بنایا گیا۔</p>
+      <p><a href="#" style="color:var(--muted)">www.ubaidgraphics.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- Float WA -->
+<a href="#" id="floatWaLink" target="_blank" class="float-wa" title="WhatsApp">
+  <svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.48-8.45zm-8.475 18.304h-.004a9.885 9.885 0 01-5.031-1.378l-.361-.214-3.741.975.997-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.884 9.884zm5.422-7.403c-.297-.149-1.758-.867-2.031-.967-.272-.099-.47-.148-.669.148-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+  </svg>
+</a>
+
+<script>
+  /* ════════════════════════════════════════════════════════════════
+     FALLBACK DATA
+     ════════════════════════════════════════════════════════════════ */
+  const DEFAULT_DATA = {
+    "branding": {
+      "logoText": "UG",
+      "logoImage": "",
+      "brandName": "Ubaid Graphics",
+      "whatsapp": "923278992381",
+      "phone": "03278992381",
+      "email": "ubaidullah2381@gmail.com",
+      "facebook": "#",
+      "instagram": "#",
+      "linkedin": "#"
+    },
+    "services": {
+      "ur": [{
+        "icon": "🎨",
+        "image": "",
+        "title": "لوگو ڈیزائن",
+        "desc": "یادگار اور ورسٹائل لوگو جو آپ کی برانڈ شناخت کو متعین کرتے ہیں۔",
+        "fullDesc": "ہم آپ کے کاروبار کی شناخت کو سمجھ کر ایک منفرد اور یادگار لوگو ڈیزائن کرتے ہیں۔ ہمارا لوگو ڈیزائن مکمل برانڈ کی عکاسی کرتا ہے اور آپ کو مقابلے سے الگ کرتا ہے۔ ہم جدید ٹولز اور تخلیقی سوچ کا استعمال کرتے ہیں تاکہ آپ کا لوگو ہر جگہ نمایاں ہو۔",
+        "features": ["منفرد ڈیزائن", "ریویژنز شامل", "ہائی ریزولیوشن", "مختلف فارمیٹس"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "💼",
+        "image": "",
+        "title": "بزنس کارڈ ڈیزائن",
+        "desc": "پیشہ ور کارڈز جو ہر ملاقات پر دیرپا تاثر چھوڑتے ہیں۔",
+        "fullDesc": "ہمارے بزنس کارڈز آپ کی برانڈ شناخت کو پیشہ ورانہ انداز میں پیش کرتے ہیں۔ ہر کارڈ کو آپ کے کاروبار کے مطابق ڈیزائن کیا جاتا ہے تاکہ یہ آپ کی پہلی ملاقات میں دیرپا تاثر چھوڑے۔",
+        "features": ["پیشہ ورانہ ڈیزائن", "پرنٹ ریڈی", "فوائل آپشن", "مختلف سائز"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "📱",
+        "image": "",
+        "title": "سوشل میڈیا پوسٹس",
+        "desc": "دلکش مواد جو انگیجمنٹ بڑھاتا اور آپ کی آڈیئنس کو متاثر کرتا ہے۔",
+        "fullDesc": "ہم آپ کے برانڈ کے لیے دلکش سوشل میڈیا پوسٹس ڈیزائن کرتے ہیں جو آپ کی آڈیئنس کو متاثر کریں اور انگیجمنٹ بڑھائیں۔ ہر پوسٹ کو آپ کے برانڈ کے مطابق اور جدید رجحانات کے ساتھ بنایا جاتا ہے۔",
+        "features": ["برانڈ کنسسٹنٹ", "موبائل فرینڈلی", "حسب ضرورت", "بہترین کوالٹی"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "📄",
+        "image": "",
+        "title": "فلائرز اور بروشر",
+        "desc": "پرکشش پرنٹ مواد جو آپ کا پیغام واضح اور خوبصورتی سے پہنچاتا ہے۔",
+        "fullDesc": "ہمارے فلائرز اور بروشرز آپ کے پیغام کو خوبصورت اور موثر طریقے سے پہنچاتے ہیں۔ پرنٹ اور ڈیجیٹل دونوں فارمیٹس کے لیے ڈیزائن کیے گئے، یہ آپ کی مارکیٹنگ کو اگلے درجے تک لے جاتے ہیں۔",
+        "features": ["پرنٹ ریڈی", "ڈیجیٹل ورژن", "کمپیکٹ ڈیزائن", "موثر پیغام"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "🖼️",
+        "image": "",
+        "title": "بینرز",
+        "desc": "ایونٹس، پروموشنز اور مہمات کے لیے زبردست ڈیجیٹل اور پرنٹ بینرز۔",
+        "fullDesc": "ہم آپ کے ایونٹس، پروموشنز اور مہمات کے لیے زبردست بینرز ڈیزائن کرتے ہیں۔ ڈیجیٹل اور پرنٹ دونوں فارمیٹس کے لیے موزوں، یہ بینرز آپ کے پیغام کو نمایاں کرتے ہیں۔",
+        "features": ["بڑے سائز", "ڈیجیٹل/پرنٹ", "آئی کیچنگ", "مہم کے مطابق"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "▶️",
+        "image": "",
+        "title": "یوٹیوب تھمب نیلز",
+        "desc": "کلک کشش تھمب نیلز جو آپ کے ویوز اور چینل بڑھاتے ہیں۔",
+        "fullDesc": "ہمارے یوٹیوب تھمب نیلز آپ کے ویڈیوز کو کلک ایبل بناتے ہیں۔ ہر تھمب نیل کو اس طرح ڈیزائن کیا جاتا ہے کہ یہ ویورز کی توجہ حاصل کرے اور آپ کے چینل کو بڑھائے۔",
+        "features": ["کلک کشش", "برانڈ کنسسٹنٹ", "مقابلہ سے بہتر", "بہترین پرفارمنس"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "🕌",
+        "image": "",
+        "title": "اسلامی پوسٹرز",
+        "desc": "روایت اور جدید جمالیات کو یکجا کرتے خوبصورت اسلامی پوسٹرز۔",
+        "fullDesc": "ہم اسلامی فن اور جدید ڈیزائن کو ملا کر خوبصورت پوسٹرز تخلیق کرتے ہیں۔ یہ پوسٹرز مساجد، اسلامی تقریبات اور مذہبی مواقع کے لیے بہترین ہیں۔",
+        "features": ["اسلامی فن", "جدید ڈیزائن", "روایتی عناصر", "حسب ضرورت"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "🏆",
+        "image": "",
+        "title": "برانڈنگ ڈیزائن",
+        "desc": "مکمل برانڈ سسٹم — حکمتِ عملی سے لے کر برانڈ گائیڈلائنز تک۔",
+        "fullDesc": "ہم آپ کے کاروبار کے لیے مکمل برانڈ سسٹم تیار کرتے ہیں۔ حکمتِ عملی سے لے کر برانڈ گائیڈلائنز تک، ہر پہلو کو کور کیا جاتا ہے تاکہ آپ کا برانڈ منفرد اور مستقل نظر آئے۔",
+        "features": ["مکمل سسٹم", "برانڈ گائیڈ", "حکمت عملی", "مستقل شناخت"],
+        "images": ["", "", ""]
+      }],
+      "en": [{
+        "icon": "🎨",
+        "image": "",
+        "title": "Logo Design",
+        "desc": "Memorable, versatile logos that define your brand identity and stand the test of time.",
+        "fullDesc": "We understand your business identity and create a unique, memorable logo that reflects your complete brand and sets you apart from competition. We use modern tools and creative thinking to ensure your logo stands out everywhere.",
+        "features": ["Unique Design", "Revisions Included", "High Resolution", "Multiple Formats"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "💼",
+        "image": "",
+        "title": "Business Card Design",
+        "desc": "Professional cards that leave a lasting first impression at every handshake.",
+        "fullDesc": "Our business cards present your brand identity professionally. Each card is designed according to your business to ensure it leaves a lasting impression at your first meeting.",
+        "features": ["Professional Design", "Print Ready", "Foil Options", "Various Sizes"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "📱",
+        "image": "",
+        "title": "Social Media Posts",
+        "desc": "Eye-catching content designed to boost engagement and grow your audience.",
+        "fullDesc": "We design eye-catching social media posts for your brand that engage your audience and boost interaction. Each post is made according to your brand and current trends.",
+        "features": ["Brand Consistent", "Mobile Friendly", "Customizable", "Best Quality"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "📄",
+        "image": "",
+        "title": "Flyers & Brochures",
+        "desc": "Compelling print materials that communicate your message clearly and beautifully.",
+        "fullDesc": "Our flyers and brochures deliver your message beautifully and effectively. Designed for both print and digital formats, they take your marketing to the next level.",
+        "features": ["Print Ready", "Digital Version", "Compact Design", "Effective Messaging"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "🖼️",
+        "image": "",
+        "title": "Banners",
+        "desc": "Impactful digital and print banners for events, promotions, and campaigns.",
+        "fullDesc": "We design impactful banners for your events, promotions and campaigns. Suitable for both digital and print formats, these banners make your message stand out.",
+        "features": ["Large Sizes", "Digital/Print", "Eye-Catching", "Campaign Ready"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "▶️",
+        "image": "",
+        "title": "YouTube Thumbnails",
+        "desc": "Click-worthy thumbnails proven to increase views and channel growth.",
+        "fullDesc": "Our YouTube thumbnails make your videos clickable. Each thumbnail is designed to grab viewers' attention and grow your channel.",
+        "features": ["Click-Worthy", "Brand Consistent", "Better Than Competition", "Best Performance"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "🕌",
+        "image": "",
+        "title": "Islamic Posters",
+        "desc": "Beautifully crafted Islamic posters blending tradition with modern aesthetics.",
+        "fullDesc": "We combine Islamic art with modern design to create beautiful posters. These posters are perfect for mosques, Islamic events and religious occasions.",
+        "features": ["Islamic Art", "Modern Design", "Traditional Elements", "Customizable"],
+        "images": ["", "", ""]
+      }, {
+        "icon": "🏆",
+        "image": "",
+        "title": "Branding Design",
+        "desc": "Complete brand systems – from strategy and visual identity to brand guidelines.",
+        "fullDesc": "We develop a complete brand system for your business. From strategy to brand guidelines, every aspect is covered to ensure your brand looks unique and consistent.",
+        "features": ["Complete System", "Brand Guide", "Strategy", "Consistent Identity"],
+        "images": ["", "", ""]
+      }]
+    }
+  };
+
+  const I18N = {
+    ur: {
+      navCta: 'کوٹیشن لیں',
+      navSubDefault: 'تخلیقی ڈیزائن اسٹوڈیو',
+      pageBadge: '✦ ہماری خدمات',
+      heroTitle: 'پریمیم ڈیزائن',
+      heroTitle2: 'سروسز',
+      heroSub: 'برانڈ شناخت سے سوشل میڈیا تک — ہر ڈیزائن میں اثر اور پیشہ واریت کی ضمانت۔',
+      learnMore: 'مزید دیکھیں',
+      getQuote: 'کوٹیشن لیں',
+      viewWork: 'ہمارے کام دیکھیں',
+      footerRights: 'جملہ حقوق محفوظ ہیں۔',
+      f1h: 'سروسز',
+      f2h: 'فوری لنکس',
+      f2l1: 'ہوم',
+      f2l2: 'سروسز',
+      f2l3: 'پورٹ فولیو',
+      f2l4: 'ہمارے بارے',
+      f2l5: 'رابطہ',
+      f3h: 'رابطہ',
+      modalQuote: 'کوٹیشن لیں',
+      modalPortfolio: 'ہمارے کام دیکھیں'
+    },
+    en: {
+      navCta: 'Get a Quote',
+      navSubDefault: 'Creative Design Studio',
+      pageBadge: '✦ Our Services',
+      heroTitle: 'Premium Design',
+      heroTitle2: 'Services',
+      heroSub: 'From brand identity to social media — every design guaranteed to impact and impress.',
+      learnMore: 'Learn More',
+      getQuote: 'Get a Quote',
+      viewWork: 'View Our Work',
+      footerRights: 'All rights reserved.',
+      f1h: 'Services',
+      f2h: 'Quick Links',
+      f2l1: 'Home',
+      f2l2: 'Services',
+      f2l3: 'Portfolio',
+      f2l4: 'About Us',
+      f2l5: 'Contact',
+      f3h: 'Contact',
+      modalQuote: 'Get a Quote',
+      modalPortfolio: 'View Our Work'
+    }
+  };
+
+  let SITE = null;
+  let lang = 'ur';
+  let currentServiceIndex = 0;
+
+  async function loadData() {
+    try {
+      const res = await fetch('data.json?v=' + Date.now());
+      if (!res.ok) throw new Error('not ok');
+      SITE = await res.json();
+    } catch (e) {
+      SITE = DEFAULT_DATA;
+    }
+    init();
+  }
+
+  function applyBranding() {
+    const b = SITE.branding || DEFAULT_DATA.branding;
+    const navLogo = document.getElementById('navLogoMark');
+    const footLogo = document.getElementById('footerLogoMark');
+
+    if (b.logoImage) {
+      navLogo.innerHTML = `<img src="${b.logoImage}" alt="logo"/>`;
+      footLogo.innerHTML = `<img src="${b.logoImage}" alt="logo"/>`;
+    } else {
+      navLogo.textContent = b.logoText || 'UG';
+      footLogo.textContent = b.logoText || 'UG';
+    }
+
+    document.getElementById('navBrandText').textContent = b.brandName || 'Ubaid Graphics';
+    document.getElementById('footerBrandText').textContent = b.brandName || 'Ubaid Graphics';
+    document.getElementById('footerBrandSpan').textContent = b.brandName || 'Ubaid Graphics';
+
+    const waNum = b.whatsapp || '923278992381';
+    document.getElementById('footerWaLink').href = `https://wa.me/${waNum}`;
+    document.getElementById('footerWaLink2').href = `https://wa.me/${waNum}`;
+    document.getElementById('floatWaLink').href = `https://wa.me/${waNum}`;
+    document.getElementById('mobWaLink').href = `https://wa.me/${waNum}`;
+
+    document.getElementById('footerPhoneLink').textContent = b.phone || '03278992381';
+    document.getElementById('footerPhoneLink').href = 'tel:' + (b.phone || '03278992381');
+    document.getElementById('footerEmailLink').textContent = b.email || 'ubaidullah2381@gmail.com';
+    document.getElementById('footerEmailLink').href = 'mailto:' + (b.email || 'ubaidullah2381@gmail.com');
+    document.getElementById('footerAddrLink').textContent = b.address || 'Pakistan 🇵🇰';
+    document.getElementById('fbLink').href = b.facebook || '#';
+    document.getElementById('igLink').href = b.instagram || '#';
+    document.getElementById('liLink').href = b.linkedin || '#';
+  }
+
+  function setLang(l) {
+    lang = l;
+    const html = document.getElementById('htmlRoot');
+    const body = document.body;
+    if (l === 'en') {
+      html.setAttribute('lang', 'en');
+      html.setAttribute('dir', 'ltr');
+      body.classList.add('lang-en');
+      body.setAttribute('dir', 'ltr');
+      document.getElementById('btnEn').classList.add('active');
+      document.getElementById('btnUr').classList.remove('active');
+    } else {
+      html.setAttribute('lang', 'ur');
+      html.setAttribute('dir', 'rtl');
+      body.classList.remove('lang-en');
+      body.setAttribute('dir', 'rtl');
+      document.getElementById('btnUr').classList.add('active');
+      document.getElementById('btnEn').classList.remove('active');
+    }
+
+    const s = I18N[l];
+
+    document.getElementById('navSub').textContent = s.navSubDefault;
+    document.getElementById('navCta').textContent = s.navCta;
+    document.getElementById('pageBadge').textContent = s.pageBadge;
+    document.getElementById('heroTitle').textContent = s.heroTitle;
+    document.getElementById('heroTitle2').textContent = s.heroTitle2;
+    document.getElementById('heroSub').textContent = s.heroSub;
+
+    document.getElementById('footerRights').textContent = s.footerRights;
+    document.getElementById('f1h').textContent = s.f1h;
+    document.getElementById('f2h').textContent = s.f2h;
+    document.getElementById('f2l1').textContent = s.f2l1;
+    document.getElementById('f2l2').textContent = s.f2l2;
+    document.getElementById('f2l3').textContent = s.f2l3;
+    document.getElementById('f2l4').textContent = s.f2l4;
+    document.getElementById('f2l5').textContent = s.f2l5;
+    document.getElementById('f3h').textContent = s.f3h;
+
+    document.getElementById('modalQuoteBtn').textContent = s.modalQuote;
+    document.getElementById('modalPortfolioBtn').textContent = s.modalPortfolio;
+
+    document.getElementById('footerDesc').textContent = (l === 'ur') ?
+      'پاکستان سے پریمیم گرافک ڈیزائن سروسز۔ ایسے برانڈز تخلیق کریں جو نمایاں ہوں اور نتائج دیں۔' :
+      'Premium graphic design services from Pakistan. Crafting brands that stand out and designs that deliver results.';
+
+    document.querySelectorAll('[data-ur]').forEach(el => {
+      el.textContent = l === 'ur' ? el.dataset.ur : el.dataset.en;
+    });
+
+    applyBranding();
+    renderServices();
+    renderFooterServices();
+    observeReveal();
+  }
+
+  function renderServices() {
+    const container = document.getElementById('servicesList');
+    container.innerHTML = '';
+    const services = SITE.services[lang] || [];
+
+    if (services.length === 0) {
+      container.innerHTML =
+        `<div class="service-detail-card"><p style="color:var(--muted);text-align:center;">${lang === 'ur' ? 'کوئی سروس دستیاب نہیں' : 'No services available'}</p></div>`;
+      return;
+    }
+
+    const s = I18N[lang];
+
+    services.forEach((svc, i) => {
+      const card = document.createElement('div');
+      card.className = `service-detail-card reveal`;
+      card.style.transitionDelay = (i * 0.06) + 's';
+
+      const iconHtml = svc.image ? `<img src="${svc.image}" alt=""/>` : svc.icon;
+
+      card.innerHTML = `
+        <div class="service-detail-icon">${iconHtml}</div>
+        <div class="service-detail-content">
+          <h3>${svc.title}</h3>
+          <p>${svc.desc}</p>
+        </div>
+        <div class="service-detail-action">
+          <button class="btn btn-primary btn-sm" onclick="openModal(${i})">
+            ${s.learnMore} →
+          </button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  function openModal(index) {
+    currentServiceIndex = index;
+    const services = SITE.services[lang] || [];
+    const svc = services[index];
+    if (!svc) return;
+
+    const s = I18N[lang];
+
+    // Icon
+    const iconEl = document.getElementById('modalIcon');
+    if (svc.image) {
+      iconEl.innerHTML = `<img src="${svc.image}" alt=""/>`;
+    } else {
+      iconEl.textContent = svc.icon || '🎨';
+      iconEl.innerHTML = svc.icon || '🎨';
+    }
+
+    // Title
+    document.getElementById('modalTitle').textContent = svc.title;
+
+    // Description (full)
+    document.getElementById('modalDesc').textContent = svc.fullDesc || svc.desc;
+
+    // Features
+    const featuresEl = document.getElementById('modalFeatures');
+    featuresEl.innerHTML = '';
+    if (svc.features && svc.features.length > 0) {
+      svc.features.forEach(f => {
+        const span = document.createElement('span');
+        span.textContent = f;
+        featuresEl.appendChild(span);
+      });
+    }
+
+    // Images
+    const imagesEl = document.getElementById('modalImages');
+    imagesEl.innerHTML = '';
+    if (svc.images && svc.images.length > 0) {
+      let hasImage = false;
+      svc.images.forEach(img => {
+        if (img && img.trim() !== '') {
+          hasImage = true;
+          const div = document.createElement('div');
+          div.className = 'modal-img';
+          div.innerHTML = `<img src="${img}" alt=""/>`;
+          imagesEl.appendChild(div);
+        }
+      });
+      if (!hasImage) {
+        imagesEl.style.display = 'none';
+      } else {
+        imagesEl.style.display = 'grid';
+      }
+    } else {
+      imagesEl.style.display = 'none';
+    }
+
+    // Open modal
+    document.getElementById('serviceModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('serviceModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Close modal on overlay click
+  document.getElementById('serviceModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // Close modal on close button
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+
+  // Close modal on ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  function renderFooterServices() {
+    const ul = document.getElementById('footerServicesList');
+    const services = SITE.services[lang] || [];
+    ul.innerHTML = services.slice(0, 5).map(s => `<li><a href="services.html">${s.title}</a></li>`).join('');
+  }
+
+  function observeReveal() {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el));
+  }
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  document.getElementById('hamburger').onclick = () => document.getElementById('mobileNav').classList.add('open');
+  document.getElementById('mobileClose').onclick = closeMob;
+
+  function closeMob() {
+    document.getElementById('mobileNav').classList.remove('open');
+  }
+
+  function init() {
+    setLang('ur');
+    document.getElementById('pageLoader').classList.add('hide');
+  }
+
+  loadData();
+
+  // ── LIVE RELOAD ──
+  (function() {
+    if (!location.hostname.includes('localhost') && !location.hostname.includes('127.0.0.1')) return;
+
+    function connectSSE() {
+      const es = new EventSource('/api/live');
+      es.onmessage = function(e) {
+        if (e.data === 'reload') {
+          loadData();
+        }
+      };
+      es.onerror = function() {
+        es.close();
+        setTimeout(connectSSE, 3000);
+      };
+    }
+    connectSSE();
+  })();
+</script>
+</body>
+</html>

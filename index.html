@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl" id="htmlRoot">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>عبید گرافکس | تخلیقی ڈیزائن سروسز – پاکستان</title>
+  <meta name="description" content="عبید گرافکس – محمد عبیداللہ کی جانب سے پریمیم لوگو ڈیزائن، برانڈنگ، سوشل میڈیا اور گرافک ڈیزائن سروسز پاکستان میں۔"/>
+  <meta property="og:title" content="عبید گرافکس | تخلیقی ڈیزائن سروسز"/>
+  <meta property="og:url" content="https://www.ubaidgraphics.com"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --navy:       #050d1a;
+      --navy-2:     #091427;
+      --navy-3:     #0d1e38;
+      --navy-card:  #0b1a30;
+      --sky:        #38bdf8;
+      --royal:      #2563eb;
+      --royal-2:    #1d4ed8;
+      --silver:     #c8d6e5;
+      --white:      #f0f6ff;
+      --muted:      #6b89aa;
+      --border:     rgba(56,189,248,0.13);
+      --glow-sky:   rgba(56,189,248,0.20);
+      --glow-royal: rgba(37,99,235,0.24);
+      --radius:     16px;
+      --radius-sm:  10px;
+      --tr:         0.35s cubic-bezier(0.4,0,0.2,1);
+      --font-ur:    'Noto Nastaliq Urdu', serif;
+      --font-en:    'Syne', sans-serif;
+      --font-body:  'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-ur);
+      background: var(--navy);
+      color: var(--silver);
+      line-height: 1.9;
+      overflow-x: hidden;
+      direction: rtl;
+    }
+    body.lang-en { font-family: var(--font-body); direction: ltr; }
+    a { text-decoration:none; color:inherit; }
+    ul { list-style:none; }
+    img { max-width:100%; display:block; }
+    button { cursor:pointer; border:none; background:none; font-family:inherit; }
+
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:var(--navy-2); }
+    ::-webkit-scrollbar-thumb { background:var(--royal); border-radius:99px; }
+
+    .container { width:90%; max-width:1200px; margin:0 auto; }
+
+    .section-label {
+      font-family: var(--font-en);
+      font-size:.75rem; font-weight:600; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--sky);
+      display:inline-flex; align-items:center; gap:.5rem;
+    }
+    body.lang-en .section-label { font-family: var(--font-en); }
+    .section-label::before { content:''; display:block; width:28px; height:2px; background:var(--sky); border-radius:2px; }
+
+    .section-title {
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      font-weight: 800; color: var(--white); line-height: 1.25;
+      margin-top:.5rem;
+    }
+    body.lang-en .section-title { font-family: var(--font-en); line-height:1.15; }
+
+    .section-subtitle { font-size:1rem; color:var(--muted); max-width:540px; margin-top:.8rem; }
+
+    .btn {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.8rem 1.9rem; border-radius:99px;
+      font-weight:600; font-size:.95rem; transition:var(--tr);
+      font-family: var(--font-en);
+    }
+    .btn-primary {
+      background:linear-gradient(135deg,var(--royal),var(--sky));
+      color:#fff; box-shadow:0 6px 28px var(--glow-royal);
+    }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 36px var(--glow-sky); }
+    .btn-outline {
+      border:1.5px solid var(--border);
+      color:var(--silver); background:rgba(255,255,255,0.03);
+      backdrop-filter:blur(8px);
+    }
+    .btn-outline:hover { border-color:var(--sky); color:var(--sky); transform:translateY(-2px); }
+
+    .lang-toggle {
+      display:flex; align-items:center; gap:0;
+      background:rgba(255,255,255,0.06); border:1px solid var(--border);
+      border-radius:99px; padding:3px; overflow:hidden;
+    }
+    .lang-btn {
+      padding:.35rem .9rem; border-radius:99px; font-size:.8rem; font-weight:600;
+      color:var(--muted); transition:var(--tr); font-family:var(--font-en);
+    }
+    .lang-btn.active { background:var(--royal); color:#fff; box-shadow:0 2px 12px var(--glow-royal); }
+
+    #navbar {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      padding:1rem 0; transition:background var(--tr), box-shadow var(--tr);
+    }
+    #navbar.scrolled {
+      background:rgba(5,13,26,0.93);
+      backdrop-filter:blur(18px);
+      box-shadow:0 2px 40px rgba(0,0,0,0.4);
+    }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .nav-logo { display:flex; align-items:center; gap:.75rem; flex-shrink:0; }
+    .logo-mark {
+      width:44px; height:44px;
+      background:linear-gradient(135deg,var(--royal),var(--sky));
+      border-radius:12px; display:flex; align-items:center; justify-content:center;
+      font-family:var(--font-en); font-weight:800; font-size:1.1rem; color:#fff;
+      box-shadow:0 4px 18px var(--glow-royal); flex-shrink:0; overflow:hidden;
+    }
+    .logo-mark img { width:100%; height:100%; object-fit:cover; }
+    .brand-text { font-family:var(--font-en); font-weight:700; font-size:1.1rem; color:var(--white); }
+    .brand-sub  { font-family:var(--font-en); font-size:.68rem; color:var(--muted); letter-spacing:.08em; }
+
+    .nav-links { display:flex; align-items:center; gap:1.8rem; }
+    .nav-links a {
+      font-size:.88rem; font-weight:500; color:var(--silver);
+      transition:color var(--tr); position:relative; font-family:var(--font-en);
+      white-space:nowrap;
+    }
+    .nav-links a::after { content:''; position:absolute; bottom:-3px; left:0; width:0; height:2px; background:var(--sky); border-radius:2px; transition:width var(--tr); }
+    body[dir="rtl"] .nav-links a::after { left:auto; right:0; }
+    .nav-links a:hover { color:var(--sky); }
+    .nav-links a:hover::after, .nav-links a.active-link::after { width:100%; }
+    .nav-links a.active-link { color:var(--sky); }
+
+    .nav-right { display:flex; align-items:center; gap:1rem; }
+    .nav-cta { padding:.5rem 1.3rem; font-size:.82rem; }
+
+    .hamburger { display:none; flex-direction:column; gap:5px; padding:4px; }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--silver); border-radius:2px; transition:var(--tr); }
+
+    .mobile-nav {
+      display:none; position:fixed; inset:0; z-index:999;
+      background:rgba(5,13,26,0.97); backdrop-filter:blur(20px);
+      flex-direction:column; align-items:center; justify-content:center; gap:2rem;
+    }
+    .mobile-nav.open { display:flex; }
+    .mobile-nav a { font-family:var(--font-en); font-size:1.5rem; font-weight:700; color:var(--white); }
+    .mobile-nav a:hover { color:var(--sky); }
+    .mobile-close { position:absolute; top:1.5rem; right:1.5rem; font-size:2rem; color:var(--muted); }
+
+    #home {
+      min-height:100vh; display:flex; align-items:center;
+      padding:120px 0 80px; position:relative; overflow:hidden;
+    }
+    .hero-bg {
+      position:absolute; inset:0; z-index:0;
+      background:
+        radial-gradient(ellipse 70% 60% at 65% 40%,rgba(37,99,235,0.18) 0%,transparent 60%),
+        radial-gradient(ellipse 50% 40% at 25% 70%,rgba(56,189,248,0.10) 0%,transparent 55%);
+    }
+    .hero-grid-bg {
+      position:absolute; inset:0; z-index:0; opacity:.045;
+      background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+      background-size:48px 48px;
+    }
+    .hero-inner {
+      position:relative; z-index:1;
+      display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:4rem;
+    }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:rgba(56,189,248,0.10); border:1px solid rgba(56,189,248,0.22);
+      border-radius:99px; padding:.4rem 1rem;
+      font-size:.78rem; font-weight:600; color:var(--sky); letter-spacing:.06em;
+      margin-bottom:1.4rem; font-family:var(--font-en);
+    }
+    .hero-badge::before { content:'●'; font-size:.5rem; animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    .hero-heading {
+      font-size:clamp(2.4rem,5.5vw,4.2rem);
+      font-weight:800; line-height:1.2; color:var(--white);
+    }
+    body.lang-en .hero-heading { font-family:var(--font-en); line-height:1.05; }
+    .hero-heading span.gradient-text {
+      background:linear-gradient(135deg,var(--sky),var(--royal));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .hero-sub { font-size:1.05rem; color:var(--muted); margin:1.3rem 0 2rem; max-width:480px; line-height:1.9; }
+    body.lang-en .hero-sub { line-height:1.75; }
+    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; }
+
+    .hero-stats {
+      display:flex; gap:2.5rem; margin-top:2.5rem; padding-top:2.2rem;
+      border-top:1px solid var(--border);
+    }
+    .stat-num { font-family:var(--font-en); font-size:1.9rem; font-weight:800; color:var(--white); }
+    .stat-num span { color:var(--sky); }
+    .stat-lbl { font-size:.78rem; color:var(--muted); }
+
+    .hero-visual { display:flex; align-items:center; justify-content:center; position:relative; }
+    .hero-logo-ring {
+      width:320px; height:320px; border-radius:50%;
+      background:linear-gradient(135deg,rgba(37,99,235,0.14),rgba(56,189,248,0.07));
+      border:1px solid rgba(56,189,248,0.14);
+      display:flex; align-items:center; justify-content:center; position:relative;
+      animation:float 6s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+    .hero-logo-ring::before { content:''; position:absolute; inset:-20px; border-radius:50%; border:1px solid rgba(56,189,248,0.07); }
+    .hero-logo-ring::after  { content:''; position:absolute; inset:-42px; border-radius:50%; border:1px dashed rgba(56,189,248,0.05); }
+    .logo-center {
+      width:190px; height:190px;
+      background:linear-gradient(135deg,var(--navy-3),var(--navy-card));
+      border-radius:26px;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(56,189,248,0.12);
+      position:relative; overflow:hidden; gap:.2rem;
+    }
+    .logo-center::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(37,99,235,0.2),transparent 60%); }
+    .logo-center img { position:relative; z-index:1; width:78%; height:78%; object-fit:contain; }
+    .logo-ug {
+      font-family:var(--font-en); font-size:4.5rem; font-weight:800; letter-spacing:-.02em;
+      background:linear-gradient(135deg,#fff 30%,var(--sky));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      position:relative; z-index:1; line-height:1;
+    }
+    .logo-tagline {
+      font-family:var(--font-en); font-size:.55rem; font-weight:600; letter-spacing:.15em;
+      color:rgba(255,255,255,0.45); text-transform:uppercase; position:relative; z-index:1;
+    }
+    .orbit-dot { position:absolute; width:10px; height:10px; background:var(--sky); border-radius:50%; box-shadow:0 0 12px var(--sky); }
+    .od1 { top:12%; right:14%; animation:orb1 8s linear infinite; }
+    .od2 { bottom:18%; left:10%; animation:orb2 11s linear infinite; background:var(--royal); box-shadow:0 0 12px var(--royal); }
+    .od3 { top:55%; right:2%; animation:orb3 6s linear infinite; width:6px; height:6px; }
+    @keyframes orb1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-8px,12px)} }
+    @keyframes orb2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(10px,-8px)} }
+    @keyframes orb3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-6px,10px)} }
+
+    .marquee-wrap {
+      overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+      padding:.9rem 0; background:rgba(9,20,39,0.6);
+    }
+    .marquee-track { display:flex; gap:3rem; width:max-content; animation:marquee 24s linear infinite; }
+    .marquee-item { display:flex; align-items:center; gap:.65rem; font-family:var(--font-en); font-weight:600; font-size:.82rem; color:var(--muted); white-space:nowrap; }
+    .marquee-item svg { color:var(--sky); }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    .section { padding:95px 0; }
+    .section-header { margin-bottom:3.2rem; }
+
+    #services { background:var(--navy-2); }
+    .services-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(255px,1fr)); gap:1.4rem; }
+    .service-card {
+      background:var(--navy-card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:1.9rem;
+      transition:var(--tr); position:relative; overflow:hidden;
+    }
+    .service-card::before { content:''; position:absolute; inset:0; opacity:0; background:linear-gradient(135deg,rgba(37,99,235,0.08),rgba(56,189,248,0.04)); transition:opacity var(--tr); }
+    .service-card:hover { transform:translateY(-6px); border-color:rgba(56,189,248,0.3); box-shadow:0 20px 50px rgba(0,0,0,0.35); }
+    .service-card:hover::before { opacity:1; }
+    .service-icon { width:50px; height:50px; border-radius:13px; background:linear-gradient(135deg,rgba(37,99,235,0.25),rgba(56,189,248,0.14)); display:flex; align-items:center; justify-content:center; font-size:1.45rem; margin-bottom:1.1rem; border:1px solid rgba(56,189,248,0.14); overflow:hidden; }
+    .service-icon img { width:100%; height:100%; object-fit:cover; }
+    .service-card h3 { font-size:1.05rem; font-weight:700; color:var(--white); margin-bottom:.45rem; }
+    body.lang-en .service-card h3 { font-family:var(--font-en); }
+    .service-card p { font-size:.9rem; color:var(--muted); line-height:1.75; }
+
+    #portfolio { background:var(--navy); }
+    .filter-tabs { display:flex; gap:.7rem; flex-wrap:wrap; margin-bottom:2.2rem; }
+    .filter-tab { padding:.45rem 1.2rem; border-radius:99px; font-size:.83rem; font-weight:600; border:1.5px solid var(--border); color:var(--muted); transition:var(--tr); cursor:pointer; font-family:var(--font-en); }
+    .filter-tab.active,.filter-tab:hover { background:var(--royal); border-color:var(--royal); color:#fff; }
+    .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:1.4rem; }
+    .portfolio-item { border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); position:relative; cursor:pointer; transition:var(--tr); aspect-ratio:4/3; }
+    .portfolio-item:hover { transform:translateY(-5px); box-shadow:0 22px 50px rgba(0,0,0,0.5); border-color:rgba(56,189,248,0.25); }
+    .p-thumb { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:3.2rem; transition:transform var(--tr); }
+    .p-thumb img { width:100%; height:100%; object-fit:cover; }
+    .portfolio-item:hover .p-thumb { transform:scale(1.07); }
+    .p-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(5,13,26,0.93) 0%,transparent 60%); opacity:0; transition:opacity var(--tr); display:flex; align-items:flex-end; padding:1.3rem; }
+    .portfolio-item:hover .p-overlay { opacity:1; }
+    .p-info h4 { font-weight:700; color:var(--white); font-size:.95rem; }
+    body.lang-en .p-info h4 { font-family:var(--font-en); }
+    .p-info span { font-size:.78rem; color:var(--sky); font-family:var(--font-en); }
+    .t-logo   { background:linear-gradient(135deg,#0d2a52,#1e4080); }
+    .t-card   { background:linear-gradient(135deg,#0a2444,#152f5e); }
+    .t-social { background:linear-gradient(135deg,#071c38,#112a52); }
+    .t-poster { background:linear-gradient(135deg,#0c2240,#183060); }
+    .t-brand  { background:linear-gradient(135deg,#091e3a,#122646); }
+
+    #about { background:var(--navy-2); }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4.5rem; align-items:center; }
+    .about-card {
+      background:var(--navy-card); border:1px solid var(--border);
+      border-radius:var(--radius); padding:2.3rem; position:relative; overflow:hidden;
+    }
+    .about-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--royal),var(--sky)); }
+    .about-avatar { width:76px; height:76px; border-radius:50%; background:linear-gradient(135deg,var(--royal),var(--sky)); display:flex; align-items:center; justify-content:center; font-family:var(--font-en); font-weight:800; font-size:1.5rem; color:#fff; margin-bottom:1.1rem; box-shadow:0 8px 28px var(--glow-royal); overflow:hidden; }
+    .about-avatar img { width:100%; height:100%; object-fit:cover; }
+    .about-card h3 { font-size:1.25rem; font-weight:700; color:var(--white); }
+    body.lang-en .about-card h3 { font-family:var(--font-en); }
+    .about-card .role { font-size:.83rem; color:var(--sky); font-weight:500; margin:.2rem 0 1.3rem; font-family:var(--font-en); }
+    .about-card .bio { font-size:.9rem; color:var(--muted); line-height:1.8; }
+    .skills-list { display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1.4rem; }
+    .skill-tag { padding:.32rem .85rem; border-radius:99px; background:rgba(37,99,235,0.15); border:1px solid rgba(37,99,235,0.2); font-size:.75rem; font-weight:600; color:var(--sky); font-family:var(--font-en); }
+    .exp-badge { position:absolute; top:-18px; left:-18px; width:84px; height:84px; background:linear-gradient(135deg,var(--royal),var(--sky)); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:var(--font-en); box-shadow:0 8px 28px var(--glow-royal); }
+    body[dir="ltr"] .exp-badge { left:auto; right:-18px; }
+    .exp-badge .num { font-size:1.5rem; font-weight:800; color:#fff; line-height:1; }
+    .exp-badge .lbl { font-size:.52rem; color:rgba(255,255,255,0.8); letter-spacing:.04em; text-align:center; }
+    .about-body p { font-size:.98rem; color:var(--silver); line-height:1.9; margin-bottom:1.1rem; }
+    body.lang-en .about-body p { line-height:1.8; }
+    .mission-card { background:var(--navy-card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:1.3rem; margin-top:1.3rem; border-right:3px solid var(--sky); }
+    body[dir="ltr"] .mission-card { border-right:none; border-left:3px solid var(--sky); }
+    .mission-card h4 { font-weight:700; color:var(--white); font-size:.92rem; margin-bottom:.35rem; }
+    body.lang-en .mission-card h4 { font-family:var(--font-en); }
+    .mission-card p { font-size:.87rem; color:var(--muted); line-height:1.75; }
+
+    #testimonials { background:var(--navy); }
+    .testi-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:1.4rem; }
+    .testi-card { background:var(--navy-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.9rem; transition:var(--tr); }
+    .testi-card:hover { border-color:rgba(56,189,248,0.25); transform:translateY(-4px); }
+    .testi-stars { color:#fbbf24; font-size:.95rem; letter-spacing:.1em; margin-bottom:.9rem; }
+    .testi-text { font-size:.93rem; color:var(--silver); line-height:1.85; margin-bottom:1.4rem; font-style:italic; }
+    .testi-author { display:flex; align-items:center; gap:.8rem; }
+    .testi-av { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--royal),var(--sky)); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; font-size:.9rem; flex-shrink:0; font-family:var(--font-en); overflow:hidden; }
+    .testi-av img { width:100%; height:100%; object-fit:cover; }
+    .testi-name { font-weight:600; color:var(--white); font-size:.9rem; }
+    body.lang-en .testi-name { font-family:var(--font-en); }
+    .testi-loc { font-size:.76rem; color:var(--muted); font-family:var(--font-en); }
+
+    #faq { background:var(--navy-2); }
+    .faq-wrap { max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:.9rem; }
+    .faq-item { background:var(--navy-card); border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; transition:border-color var(--tr); }
+    .faq-item.open { border-color:rgba(56,189,248,0.3); }
+    .faq-q { display:flex; align-items:center; justify-content:space-between; padding:1.2rem 1.4rem; cursor:pointer; user-select:none; }
+    .faq-q span { font-weight:600; color:var(--white); font-size:.95rem; }
+    body.lang-en .faq-q span { font-family:var(--font-en); }
+    .faq-icon { width:27px; height:27px; border-radius:50%; background:rgba(56,189,248,0.10); border:1px solid rgba(56,189,248,0.2); display:flex; align-items:center; justify-content:center; color:var(--sky); font-size:1.1rem; flex-shrink:0; margin-right:1rem; transition:transform var(--tr),background var(--tr); font-family:var(--font-en); }
+    body[dir="ltr"] .faq-icon { margin-right:0; margin-left:1rem; }
+    .faq-item.open .faq-icon { transform:rotate(45deg); background:rgba(56,189,248,0.18); }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(0.4,0,0.2,1),padding .3s; padding:0 1.4rem; }
+    .faq-item.open .faq-a { max-height:220px; padding-bottom:1.2rem; }
+    .faq-a p { font-size:.9rem; color:var(--muted); line-height:1.8; }
+    body.lang-en .faq-a p { font-family:var(--font-body); }
+
+    #contact { background:var(--navy); }
+    .contact-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:3.5rem; align-items:start; }
+    .contact-info { display:flex; flex-direction:column; gap:1.1rem; }
+    .c-item { display:flex; align-items:center; gap:.9rem; background:var(--navy-card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:1rem 1.2rem; transition:var(--tr); }
+    .c-item:hover { border-color:rgba(56,189,248,0.25); transform:translateX(-5px); }
+    body[dir="ltr"] .c-item:hover { transform:translateX(5px); }
+    .c-icon { width:42px; height:42px; border-radius:9px; background:linear-gradient(135deg,rgba(37,99,235,0.25),rgba(56,189,248,0.14)); border:1px solid rgba(56,189,248,0.14); display:flex; align-items:center; justify-content:center; font-size:1.05rem; flex-shrink:0; }
+    .c-label { font-size:.73rem; color:var(--muted); letter-spacing:.05em; text-transform:uppercase; font-family:var(--font-en); }
+    .c-value { font-weight:600; color:var(--white); font-size:.92rem; font-family:var(--font-en); }
+    .wa-btn { display:flex; align-items:center; gap:.7rem; background:linear-gradient(135deg,#25d366,#128c7e); color:#fff; border-radius:var(--radius-sm); padding:.95rem 1.4rem; font-weight:700; font-family:var(--font-en); font-size:.9rem; margin-top:.4rem; transition:var(--tr); box-shadow:0 6px 24px rgba(37,211,102,0.25); }
+    .wa-btn:hover { transform:translateY(-3px); box-shadow:0 12px 36px rgba(37,211,102,0.35); }
+    .map-ph { background:var(--navy-card); border:1px solid var(--border); border-radius:var(--radius-sm); height:150px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4rem; color:var(--muted); font-size:.88rem; margin-top:.4rem; }
+    .map-ph span { font-size:1.8rem; }
+
+    .contact-form { display:flex; flex-direction:column; gap:1.1rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; }
+    .form-group { display:flex; flex-direction:column; gap:.4rem; }
+    .form-group label { font-size:.78rem; font-weight:600; color:var(--muted); letter-spacing:.05em; text-transform:uppercase; font-family:var(--font-en); }
+    .form-group input,.form-group textarea,.form-group select {
+      background:var(--navy-card); border:1.5px solid var(--border);
+      border-radius:var(--radius-sm); padding:.8rem 1rem;
+      color:var(--white); font-family:var(--font-body); font-size:.93rem;
+      outline:none; transition:border-color var(--tr),box-shadow var(--tr); width:100%;
+    }
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus { border-color:var(--sky); box-shadow:0 0 0 3px rgba(56,189,248,0.10); }
+    .form-group textarea { resize:vertical; min-height:125px; }
+    .form-group select option { background:var(--navy-card); }
+    .form-submit { align-self:flex-start; padding:.85rem 2rem; }
+
+    footer { background:var(--navy-2); border-top:1px solid var(--border); padding:3.5rem 0 1.8rem; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:2.5rem; margin-bottom:2.5rem; }
+    .footer-brand p { font-size:.88rem; color:var(--muted); line-height:1.85; margin-top:.9rem; max-width:270px; }
+    .footer-col h4 { font-family:var(--font-en); font-weight:700; color:var(--white); font-size:.92rem; margin-bottom:1.1rem; }
+    .footer-col ul { display:flex; flex-direction:column; gap:.6rem; }
+    .footer-col ul li a { font-size:.86rem; color:var(--muted); transition:color var(--tr); font-family:var(--font-en); }
+    .footer-col ul li a:hover { color:var(--sky); }
+    .social-icons { display:flex; gap:.65rem; margin-top:1.1rem; }
+    .s-icon { width:36px; height:36px; border-radius:9px; background:rgba(255,255,255,0.04); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:.9rem; color:var(--muted); transition:var(--tr); font-family:var(--font-en); font-weight:700; }
+    .s-icon:hover { background:var(--royal); border-color:var(--royal); color:#fff; transform:translateY(-2px); }
+    .footer-bottom { border-top:1px solid var(--border); padding-top:1.8rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.8rem; }
+    .footer-bottom p { font-size:.83rem; color:var(--muted); }
+    .footer-bottom span { color:var(--sky); }
+
+    .float-wa { position:fixed; bottom:2rem; left:2rem; z-index:900; width:54px; height:54px; border-radius:50%; background:linear-gradient(135deg,#25d366,#128c7e); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 28px rgba(37,211,102,0.4); color:#fff; font-size:1.45rem; transition:var(--tr); animation:fb 3s ease-in-out infinite; }
+    body[dir="ltr"] .float-wa { left:auto; right:2rem; }
+    .float-wa:hover { transform:scale(1.12); }
+    @keyframes fb { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+    .float-wa::before { content:''; position:absolute; inset:-4px; border-radius:50%; border:2px solid rgba(37,211,102,0.4); animation:rip 2s ease-out infinite; }
+    @keyframes rip { 0%{transform:scale(1);opacity:1} 100%{transform:scale(1.5);opacity:0} }
+
+    .reveal { opacity:0; transform:translateY(26px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .rd1{transition-delay:.1s} .rd2{transition-delay:.2s} .rd3{transition-delay:.3s} .rd4{transition-delay:.4s}
+
+    .toast { position:fixed; bottom:6rem; left:2rem; z-index:2000; background:var(--navy-card); border:1px solid rgba(56,189,248,0.3); border-radius:var(--radius-sm); padding:.9rem 1.4rem; display:flex; align-items:center; gap:.7rem; box-shadow:0 10px 40px rgba(0,0,0,0.4); transform:translateX(-200%); transition:transform .4s cubic-bezier(0.4,0,0.2,1); max-width:310px; }
+    body[dir="ltr"] .toast { left:auto; right:2rem; transform:translateX(200%); }
+    .toast.show { transform:translateX(0); }
+    .toast-icon { font-size:1.3rem; }
+    .toast-msg { font-size:.88rem; color:var(--white); font-weight:500; }
+
+    /* ── PAGE LOADER ─────────────────────────────────────────── */
+    #pageLoader {
+      position:fixed; inset:0; z-index:5000; background:var(--navy);
+      display:flex; align-items:center; justify-content:center; transition:opacity .4s ease;
+    }
+    #pageLoader .spin { width:42px; height:42px; border-radius:50%; border:3px solid rgba(56,189,248,0.18); border-top-color:var(--sky); animation:sp .8s linear infinite; }
+    @keyframes sp { to{ transform:rotate(360deg); } }
+    #pageLoader.hide { opacity:0; pointer-events:none; }
+
+    @media(max-width:1024px){ .footer-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:820px){
+      .hero-inner{grid-template-columns:1fr;text-align:center;gap:2.5rem;}
+      .hero-sub,.hero-actions,.hero-stats{margin-left:auto;margin-right:auto;}
+      .hero-actions,.hero-stats{justify-content:center;}
+      .hero-visual{order:-1;}
+      .hero-logo-ring{width:250px;height:250px;}
+      .logo-center{width:140px;height:140px;}
+      .logo-ug{font-size:3.5rem;}
+      .about-grid{grid-template-columns:1fr;gap:2rem;}
+      .contact-grid{grid-template-columns:1fr;gap:2rem;}
+      .form-row{grid-template-columns:1fr;}
+      .nav-links,.nav-cta{display:none;}
+      .hamburger{display:flex;}
+      .footer-grid{grid-template-columns:1fr;}
+      .section-header{text-align:center;}
+      .section-label{margin:0 auto;}
+    }
+    @media(max-width:480px){
+      .section{padding:65px 0;}
+      .hero-stats{flex-direction:column;gap:1rem;align-items:center;}
+      .portfolio-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="pageLoader"><div class="spin"></div></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="nav-logo">
+      <div class="logo-mark" id="navLogoMark">UG</div>
+      <div>
+        <div class="brand-text" id="navBrandText">Ubaid Graphics</div>
+        <div class="brand-sub" id="navSub">تخلیقی ڈیزائن اسٹوڈیو</div>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home"         data-ur="ہوم"       data-en="Home">ہوم</a></li>
+      <li><a href="#services"     data-ur="سروسز"     data-en="Services">سروسز</a></li>
+      <li><a href="#portfolio"    data-ur="پورٹ فولیو" data-en="Portfolio">پورٹ فولیو</a></li>
+      <li><a href="#about"        data-ur="ہمارے بارے" data-en="About">ہمارے بارے</a></li>
+      <li><a href="#contact"      data-ur="رابطہ"     data-en="Contact">رابطہ</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btnUr" onclick="setLang('ur')">اردو</button>
+        <button class="lang-btn"        id="btnEn" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="#contact" class="btn btn-primary nav-cta" id="navCta">کوٹیشن لیں</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#home"      onclick="closeMob()" data-ur="ہوم"        data-en="Home">ہوم</a>
+  <a href="#services"  onclick="closeMob()" data-ur="سروسز"      data-en="Services">سروسز</a>
+  <a href="#portfolio" onclick="closeMob()" data-ur="پورٹ فولیو" data-en="Portfolio">پورٹ فولیو</a>
+  <a href="#about"     onclick="closeMob()" data-ur="ہمارے بارے" data-en="About">ہمارے بارے</a>
+  <a href="#contact"   onclick="closeMob()" data-ur="رابطہ"      data-en="Contact">رابطہ</a>
+  <a href="#" id="mobWaLink" target="_blank" class="btn btn-primary">WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge" id="heroBadge">✦ نئے پروجیکٹس کے لیے دستیاب</div>
+        <h1 class="hero-heading" id="heroHeading">
+          <span id="heroH1">تخلیقی ڈیزائن</span><br/>
+          <span class="gradient-text" id="heroH2">سولوشنز</span>
+          <span id="heroH3"> جو نمایاں کریں</span>
+        </h1>
+        <p class="hero-sub" id="heroSub"></p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn btn-primary" id="btnPortfolio">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span id="btnPortfolioTxt">پورٹ فولیو دیکھیں</span>
+          </a>
+          <a href="#contact" class="btn btn-outline" id="btnContact">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            <span id="btnContactTxt">ابھی رابطہ کریں</span>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num" id="statNum1">200<span>+</span></div>
+            <div class="stat-lbl" id="stat1">پروجیکٹس مکمل</div>
+          </div>
+          <div>
+            <div class="stat-num" id="statNum2">100<span>%</span></div>
+            <div class="stat-lbl" id="stat2">اطمینان کی شرح</div>
+          </div>
+          <div>
+            <div class="stat-num" id="statNum3">3<span>+</span></div>
+            <div class="stat-lbl" id="stat3">سال کا تجربہ</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-logo-ring">
+          <div class="logo-center" id="heroLogoCenter">
+            <span class="logo-ug">UG</span>
+            <span class="logo-tagline">UBAID GRAPHICS</span>
+          </div>
+          <div class="orbit-dot od1"></div>
+          <div class="orbit-dot od2"></div>
+          <div class="orbit-dot od3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label" id="svcLabel">ہماری خدمات</div>
+      <h2 class="section-title" id="svcTitle">پریمیم ڈیزائن سروسز</h2>
+      <p class="section-subtitle" id="svcSub"></p>
+    </div>
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label" id="portLabel">ہمارا کام</div>
+      <h2 class="section-title" id="portTitle">نمایاں پورٹ فولیو</h2>
+      <p class="section-subtitle" id="portSub"></p>
+    </div>
+    <div class="filter-tabs" id="filterTabs"></div>
+    <div class="portfolio-grid" id="portfolioGrid"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-card">
+          <div class="about-avatar" id="aboutAvatar">MU</div>
+          <h3 id="aboutName">محمد عبیداللہ</h3>
+          <p class="role" id="aboutRole">Founder & Creative Director · Ubaid Graphics</p>
+          <p class="bio" id="aboutBio"></p>
+          <div class="skills-list" id="skillsList"></div>
+          <div class="exp-badge">
+            <span class="num" id="expNum">3+</span>
+            <span class="lbl">Years</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-body reveal rd2">
+        <div class="section-label" id="aboutLabel">ہمارے بارے میں</div>
+        <h2 class="section-title" id="aboutTitle" style="margin-bottom:1.4rem;">شناختیں تخلیق کرنا،<br/>برانڈز بنانا</h2>
+        <p id="aboutP1"></p>
+        <p id="aboutP2"></p>
+        <div class="mission-card">
+          <h4 id="missionTitle">🎯 ہمارا مشن</h4>
+          <p id="missionText"></p>
+        </div>
+        <div class="mission-card" style="border-right-color:var(--royal);border-left-color:var(--royal);margin-top:.8rem;">
+          <h4 id="visionTitle">🔭 ہمارا وژن</h4>
+          <p id="visionText"></p>
+        </div>
+        <div style="margin-top:1.8rem;">
+          <a href="#contact" class="btn btn-primary" id="startBtn">پروجیکٹ شروع کریں ←</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="section-header reveal" style="text-align:center;">
+      <div class="section-label" style="margin:0 auto;" id="testiLabel">کلائنٹ جائزے</div>
+      <h2 class="section-title" id="testiTitle">ہمارے کلائنٹ کیا کہتے ہیں</h2>
+    </div>
+    <div class="testi-grid" id="testiGrid"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="section-header reveal" style="text-align:center;">
+      <div class="section-label" style="margin:0 auto;" id="faqLabel">عمومی سوالات</div>
+      <h2 class="section-title" id="faqTitle">اکثر پوچھے جانے والے سوالات</h2>
+    </div>
+    <div class="faq-wrap" id="faqGrid"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label" id="contactLabel">رابطہ کریں</div>
+      <h2 class="section-title" id="contactTitle">مل کر کام کریں</h2>
+      <p class="section-subtitle" id="contactSub"></p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="c-item">
+          <div class="c-icon">📞</div>
+          <div>
+            <div class="c-label">Phone</div>
+            <div class="c-value" id="contactPhone">03278992381</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">✉️</div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-value" id="contactEmail">ubaidullah2381@gmail.com</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">📍</div>
+          <div>
+            <div class="c-label">Location</div>
+            <div class="c-value" id="contactAddress">Pakistan 🇵🇰</div>
+          </div>
+        </div>
+        <a href="#" id="waLink" target="_blank" class="wa-btn">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.48-8.45zm-8.475 18.304h-.004a9.885 9.885 0 01-5.031-1.378l-.361-.214-3.741.975.997-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.884 9.884zm5.422-7.403c-.297-.149-1.758-.867-2.031-.967-.272-.099-.47-.148-.669.148-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+          <span id="waBtnTxt">واٹس ایپ پر بات کریں</span>
+        </a>
+        <div class="map-ph">
+          <span>🗺️</span>
+          <strong style="color:var(--silver)" id="mapAddress">Pakistan</strong>
+          <span id="mapTxt">دنیا بھر میں ریموٹ پروجیکٹس کے لیے دستیاب</span>
+        </div>
+      </div>
+      <div class="reveal rd2">
+        <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label id="lName">آپ کا نام</label>
+              <input type="text" id="iName" placeholder="محمد علی" required/>
+            </div>
+            <div class="form-group">
+              <label id="lEmail">ای میل</label>
+              <input type="email" id="iEmail" placeholder="your@email.com" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label id="lService">سروس کا انتخاب</label>
+            <select id="iService">
+              <option value="" id="svcOpt0">سروس منتخب کریں…</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label id="lMsg">پروجیکٹ کی تفصیل</label>
+            <textarea id="iMsg" placeholder="اپنے پروجیکٹ، برانڈ، اہداف اور کوئی حوالہ بتائیں…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <span id="sendBtnTxt">پیغام بھیجیں</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="logo-mark" id="footerLogoMark">UG</div>
+          <div>
+            <div class="brand-text" id="footerBrandText">Ubaid Graphics</div>
+            <div class="brand-sub">Creative Design Studio</div>
+          </div>
+        </div>
+        <p id="footerDesc"></p>
+        <div class="social-icons">
+          <a href="#" id="fbLink" class="s-icon">f</a>
+          <a href="#" id="igLink" class="s-icon">📸</a>
+          <a href="#" id="liLink" class="s-icon">in</a>
+          <a href="#" id="footerWaLink" class="s-icon">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 id="f1h">سروسز</h4>
+        <ul id="footerServicesList"></ul>
+      </div>
+      <div class="footer-col">
+        <h4 id="f2h">فوری لنکس</h4>
+        <ul>
+          <li><a href="#home" id="f2l1">ہوم</a></li>
+          <li><a href="#portfolio" id="f2l2">پورٹ فولیو</a></li>
+          <li><a href="#about" id="f2l3">ہمارے بارے</a></li>
+          <li><a href="#testimonials" id="f2l4">جائزے</a></li>
+          <li><a href="#contact" id="f2l5">رابطہ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 id="f3h">رابطہ</h4>
+        <ul>
+          <li><a href="#" id="footerPhoneLink">03278992381</a></li>
+          <li><a href="#" id="footerEmailLink">ubaidullah2381@gmail.com</a></li>
+          <li><a href="#" id="footerAddrLink">Pakistan 🇵🇰</a></li>
+          <li><a href="#" id="footerWaLink2">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 <span id="footerBrandSpan">Ubaid Graphics</span>. <span id="footerRights">جملہ حقوق محفوظ ہیں۔</span> ❤️ پاکستان میں بنایا گیا۔</p>
+      <p><a href="#" style="color:var(--muted)">www.ubaidgraphics.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- Float WA -->
+<a href="#" id="floatWaLink" target="_blank" class="float-wa" title="WhatsApp">
+  <svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.48-8.45zm-8.475 18.304h-.004a9.885 9.885 0 01-5.031-1.378l-.361-.214-3.741.975.997-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.884 9.884zm5.422-7.403c-.297-.149-1.758-.867-2.031-.967-.272-.099-.47-.148-.669.148-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+</a>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <span class="toast-icon">✅</span>
+  <span class="toast-msg" id="toastMsg">پیغام بھیج دیا گیا! ہم 24 گھنٹوں میں جواب دیں گے۔</span>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════════
+   FALLBACK DATA — used automatically when fetch('data.json') fails
+   ════════════════════════════════════════════════════════════════ */
+const DEFAULT_DATA = {"branding":{"logoText":"UG","logoImage":"","brandName":"Ubaid Graphics","whatsapp":"923278992381","phone":"03278992381","email":"ubaidullah2381@gmail.com","facebook":"#","instagram":"#","linkedin":"#"},"hero":{"stats":{"projects":"200","satisfaction":"100","years":"3"},"ur":{"badge":"✦ نئے پروجیکٹس کے لیے دستیاب","h1":"تخلیقی ڈیزائن","h2":"سولوشنز","h3":" جو نمایاں کریں","sub":"ہم پریمیم بصری شناختیں، زبردست برانڈز اور شاندار گرافکس تخلیق کرتے ہیں جو آپ کے کاروبار کو ناقابلِ فراموش بناتے ہیں — لوگو سے لے کر مکمل برانڈ تجربے تک۔","stat1":"پروجیکٹس مکمل","stat2":"اطمینان کی شرح","stat3":"سال کا تجربہ"},"en":{"badge":"✦ Available for New Projects","h1":"Creative Design","h2":"Solutions","h3":" That Stand Out","sub":"We craft premium visual identities, compelling brands, and stunning graphics that make your business unforgettable — from logos to full brand experiences.","stat1":"Projects Done","stat2":"Satisfaction Rate","stat3":"Years Experience"}},"marquee":{"ur":["لوگو ڈیزائن","بزنس کارڈز","برانڈنگ","سوشل میڈیا","فلائرز","بینرز","تھمب نیلز","اسلامی پوسٹرز"],"en":["Logo Design","Business Cards","Branding","Social Media","Flyers","Banners","Thumbnails","Islamic Posters"]},"services":{"ur":[{"icon":"🎨","image":"","title":"لوگو ڈیزائن","desc":"یادگار اور ورسٹائل لوگو جو آپ کی برانڈ شناخت کو متعین کرتے ہیں۔"},{"icon":"💼","image":"","title":"بزنس کارڈ ڈیزائن","desc":"پیشہ ور کارڈز جو ہر ملاقات پر دیرپا تاثر چھوڑتے ہیں۔"},{"icon":"📱","image":"","title":"سوشل میڈیا پوسٹس","desc":"دلکش مواد جو انگیجمنٹ بڑھاتا اور آپ کی آڈیئنس کو متاثر کرتا ہے۔"},{"icon":"📄","image":"","title":"فلائرز اور بروشر","desc":"پرکشش پرنٹ مواد جو آپ کا پیغام واضح اور خوبصورتی سے پہنچاتا ہے۔"},{"icon":"🖼️","image":"","title":"بینرز","desc":"ایونٹس، پروموشنز اور مہمات کے لیے زبردست ڈیجیٹل اور پرنٹ بینرز۔"},{"icon":"▶️","image":"","title":"یوٹیوب تھمب نیلز","desc":"کلک کشش تھمب نیلز جو آپ کے ویوز اور چینل بڑھاتے ہیں۔"},{"icon":"🕌","image":"","title":"اسلامی پوسٹرز","desc":"روایت اور جدید جمالیات کو یکجا کرتے خوبصورت اسلامی پوسٹرز۔"},{"icon":"🏆","image":"","title":"برانڈنگ ڈیزائن","desc":"مکمل برانڈ سسٹم — حکمتِ عملی سے لے کر برانڈ گائیڈلائنز تک۔"}],"en":[{"icon":"🎨","image":"","title":"Logo Design","desc":"Memorable, versatile logos that define your brand identity and stand the test of time."},{"icon":"💼","image":"","title":"Business Card Design","desc":"Professional cards that leave a lasting first impression at every handshake."},{"icon":"📱","image":"","title":"Social Media Posts","desc":"Eye-catching content designed to boost engagement and grow your audience."},{"icon":"📄","image":"","title":"Flyers & Brochures","desc":"Compelling print materials that communicate your message clearly and beautifully."},{"icon":"🖼️","image":"","title":"Banners","desc":"Impactful digital and print banners for events, promotions, and campaigns."},{"icon":"▶️","image":"","title":"YouTube Thumbnails","desc":"Click-worthy thumbnails proven to increase views and channel growth."},{"icon":"🕌","image":"","title":"Islamic Posters","desc":"Beautifully crafted Islamic posters blending tradition with modern aesthetics."},{"icon":"🏆","image":"","title":"Branding Design","desc":"Complete brand systems – from strategy and visual identity to brand guidelines."}]},"filters":{"ur":["سب","لوگو ڈیزائن","بزنس کارڈز","سوشل میڈیا","پوسٹرز","برانڈنگ"],"en":["All","Logo Design","Business Cards","Social Media","Posters","Branding"]},"portfolio":{"ur":[{"cat":"لوگو ڈیزائن","emoji":"🎨","image":"","title":"ٹیک ویو اسٹارٹ اپ لوگو","sub":"شناخت ڈیزائن"},{"cat":"بزنس کارڈز","emoji":"💼","image":"","title":"ایگزیکٹو بزنس کارڈ","sub":"پرنٹ ڈیزائن"},{"cat":"سوشل میڈیا","emoji":"📱","image":"","title":"انسٹاگرام کمپیگن پیک","sub":"سوشل میڈیا"},{"cat":"پوسٹرز","emoji":"🖼️","image":"","title":"رمضان اسلامی پوسٹر","sub":"پوسٹر ڈیزائن"},{"cat":"برانڈنگ","emoji":"🏆","image":"","title":"مکمل برانڈ آئیڈنٹٹی کٹ","sub":"برانڈ سسٹم"},{"cat":"لوگو ڈیزائن","emoji":"✏️","image":"","title":"منیمل ورڈ مارک","sub":"لوگو ڈیزائن"},{"cat":"سوشل میڈیا","emoji":"📲","image":"","title":"فیس بک ایڈ کریٹوز","sub":"سوشل میڈیا"},{"cat":"بزنس کارڈز","emoji":"🃏","image":"","title":"لگژری فوائل کارڈ ڈیزائن","sub":"پرنٹ ڈیزائن"},{"cat":"پوسٹرز","emoji":"🌙","image":"","title":"عید مبارک اسپیشل","sub":"پوسٹر ڈیزائن"}],"en":[{"cat":"Logo Design","emoji":"🎨","image":"","title":"TechWave Startup Logo","sub":"Identity Design"},{"cat":"Business Cards","emoji":"💼","image":"","title":"Executive Business Card","sub":"Print Design"},{"cat":"Social Media","emoji":"📱","image":"","title":"Instagram Campaign Pack","sub":"Social Media"},{"cat":"Posters","emoji":"🖼️","image":"","title":"Ramadan Islamic Poster","sub":"Poster Design"},{"cat":"Branding","emoji":"🏆","image":"","title":"Full Brand Identity Kit","sub":"Brand System"},{"cat":"Logo Design","emoji":"✏️","image":"","title":"Minimalist Wordmark","sub":"Logo Design"},{"cat":"Social Media","emoji":"📲","image":"","title":"Facebook Ad Creatives","sub":"Social Media"},{"cat":"Business Cards","emoji":"🃏","image":"","title":"Luxury Foil Card Design","sub":"Print Design"},{"cat":"Posters","emoji":"🌙","image":"","title":"Eid Mubarak Special","sub":"Poster Design"}]},"testimonials":{"ur":[{"stars":"★★★★★","avatar":"","init":"AK","text":"محمد عبیداللہ نے ہماری مکمل برانڈ شناخت شروع سے تیار کی۔ لوگو، بزنس کارڈز اور سوشل میڈیا ٹیمپلیٹس سب بالکل شاندار ہیں۔ انتہائی سفارش کی جاتی ہے!","name":"احمد خان","loc":"لاہور، پاکستان"},{"stars":"★★★★★","avatar":"","init":"FM","text":"یوٹیوب تھمب نیلز پر بہترین کام! عبید گرافکس سے ری ڈیزائن کے بعد ہمارا CTR نمایاں طور پر بڑھ گیا۔ انتہائی پیشہ ور اور تیز ڈیلیوری۔","name":"فاطمہ ملک","loc":"کراچی، پاکستان"},{"stars":"★★★★★","avatar":"","init":"UA","text":"بہترین گرافک ڈیزائنر جن کے ساتھ میں نے کام کیا ہے۔ اسلامی پوسٹر ڈیزائن ہماری مسجد کی تقریبات کے لیے بالکل موزوں تھے۔ ماشاءاللہ!","name":"عثمان علی","loc":"اسلام آباد، پاکستان"},{"stars":"★★★★★","avatar":"","init":"ST","text":"عبید گرافکس سے سوشل میڈیا پوسٹس لینے کے بعد ہماری انگیجمنٹ تین گنا بڑھ گئی۔ ڈیزائنز جدید، صاف اور ہر بار برانڈ کے مطابق ہوتے ہیں۔","name":"سارہ طارق","loc":"فیصل آباد، پاکستان"},{"stars":"★★★★★","avatar":"","init":"BH","text":"بہت باصلاحیت ڈیزائنر اور تفصیل پر گہری نظر۔ برانڈنگ پروجیکٹ وقت پر اور بجٹ میں مکمل کیا۔ ضرور دوبارہ کام کریں گے!","name":"بلال حسن","loc":"ملتان، پاکستان"},{"stars":"★★★★★","avatar":"","init":"NQ","text":"عبید نے ہمارے رئیل اسٹیٹ کاروبار کے لیے جو فلائرز اور بروشر بنائے وہ غیر معمولی تھے۔ کلائنٹس اکثر ہمارے پیشہ ور مواد کی تعریف کرتے ہیں۔","name":"نادیہ قریشی","loc":"راولپنڈی، پاکستان"}],"en":[{"stars":"★★★★★","avatar":"","init":"AK","text":"Muhammad Ubaidullah designed our complete brand identity from scratch. The logo, business cards, and templates are absolutely stunning. Highly recommended!","name":"Ahmed Khan","loc":"Lahore, Pakistan"},{"stars":"★★★★★","avatar":"","init":"FM","text":"Amazing work on our YouTube thumbnails! Our CTR increased significantly after redesigning with Ubaid Graphics. Super professional and fast delivery.","name":"Fatima Malik","loc":"Karachi, Pakistan"},{"stars":"★★★★★","avatar":"","init":"UA","text":"Best graphic designer I have worked with. The Islamic poster designs were perfect for our masjid events. Beautiful work, MashAllah!","name":"Usman Ali","loc":"Islamabad, Pakistan"},{"stars":"★★★★★","avatar":"","init":"ST","text":"Our social media engagement tripled after switching to Ubaid Graphics. The designs are modern, clean, and on-brand every single time.","name":"Sara Tariq","loc":"Faisalabad, Pakistan"},{"stars":"★★★★★","avatar":"","init":"BH","text":"Very talented designer with a great eye for detail. Delivered our branding project on time and within budget. Will definitely work with him again!","name":"Bilal Hassan","loc":"Multan, Pakistan"},{"stars":"★★★★★","avatar":"","init":"NQ","text":"The flyers and brochures Ubaid designed for our real estate business were exceptional. Clients often compliment us on our professional materials.","name":"Nadia Qureshi","loc":"Rawalpindi, Pakistan"}]},"faqs":{"ur":[{"q":"لوگو ڈیزائن پروجیکٹ میں کتنا وقت لگتا ہے؟","a":"عام طور پر 3 سے 5 کاروباری دن، 3 ریویژن راؤنڈ سمیت۔ اضافی فیس کے ساتھ 24-48 گھنٹوں میں رش ڈیلیوری بھی ممکن ہے۔"},{"q":"شروع کرنے کے لیے کون سی معلومات چاہیے؟","a":"کاروبار کا نام، صنعت، پسندیدہ رنگ، اسٹائل ریفرنسز (اگر ہوں) اور یہ کہ آپ کا برانڈ کیا ظاہر کرتا ہے۔"},{"q":"کیا آپ ریویژن کرتے ہیں؟","a":"جی ہاں! تمام پروجیکٹس میں کم از کم 2-3 ریویژن راؤنڈ شامل ہیں۔ جب تک آپ 100% مطمئن نہ ہوں ہم کام جاری رکھتے ہیں۔"},{"q":"حتمی فائلز کیسے ملیں گی؟","a":"ای میل یا گوگل ڈرائیو کے ذریعے PDF، PNG، SVG اور AI/PSD سورس فائلز میں ہائی ریزولیوشن فائلز بھیجی جائیں گی۔"},{"q":"کیا آپ بین الاقوامی کلائنٹس کے ساتھ کام کرتے ہیں؟","a":"بالکل! ہم دنیا بھر کے کلائنٹس کے ساتھ کام کرتے ہیں۔ بینک ٹرانسفر، جاز کیش، ایزی پیسہ یا پے پال سے ادائیگی ممکن ہے۔"},{"q":"کیا سوشل میڈیا کے لیے ماہانہ پیکج ملتا ہے؟","a":"جی ہاں، سوشل میڈیا مواد کے لیے ماہانہ ریٹینر پیکج دستیاب ہیں۔ اپنی ضروریات اور بجٹ کے مطابق کسٹم پلان کے لیے رابطہ کریں۔"}],"en":[{"q":"How long does a logo design project take?","a":"Typically 3–5 business days, including up to 3 revision rounds. Rush delivery within 24–48 hours is available for an additional fee."},{"q":"What information do you need to start?","a":"Your business name, industry, preferred colors, style references if any, and a brief description of what your brand represents."},{"q":"Do you offer revision rounds?","a":"Yes! All projects include at least 2–3 revision rounds. We work with you until you are 100% satisfied with the final result."},{"q":"How do I receive the final files?","a":"Final files are delivered via email or Google Drive in PDF, PNG, SVG, and AI/PSD source files as applicable."},{"q":"Can you work with international clients?","a":"Absolutely! We work with clients worldwide. Payments via bank transfer, JazzCash, EasyPaisa, or PayPal."},{"q":"Do you offer monthly social media packages?","a":"Yes, we offer monthly retainer packages for social media content. Contact us to discuss a custom plan that fits your needs and budget."}]},"about":{"avatarImage":"","avatarInitials":"MU","skills":["Adobe Illustrator","Photoshop","Canva Pro","Figma","Brand Identity","Typography","Print Design"],"ur":{"name":"محمد عبیداللہ","role":"Founder & Creative Director · Ubaid Graphics","bio":"پاکستان سے تعلق رکھنے والے ایک پرجوش گرافک ڈیزائنر جو تفصیل پر گہری نظر اور ایسے ڈیزائن تخلیق کرنے کے جذبے سے مالا مال ہیں جو پیغام پہنچائیں، قائل کریں اور تحریک دیں۔","p1":"عبید گرافکس پاکستان میں قائم ایک تخلیقی ڈیزائن اسٹوڈیو ہے جسے محمد عبیداللہ نے قائم کیا۔ ہم ہر سائز کے کاروباروں کو طاقتور، قابلِ شناخت برانڈز بنانے میں مدد کرتے ہیں۔","p2":"چاہے آپ ایک نیا کاروبار شروع کر رہے ہوں، اپنا برانڈ نئے سرے سے ترتیب دے رہے ہوں، یا سوشل میڈیا کے لیے مستقل مواد کی ضرورت ہو — ہم ہر پروجیکٹ میں تخلیقیت، درستگی اور جذبہ لاتے ہیں۔","missionTitle":"🎯 ہمارا مشن","missionText":"کاروباروں کو بہترین ڈیزائن کے ذریعے بااختیار بنانا جو ان کی کہانی واضح طور پر بیان کرے اور حقیقی ترقی کو فروغ دے۔","visionTitle":"🔭 ہمارا وژن","visionText":"پاکستان کا سب سے قابلِ اعتماد تخلیقی ڈیزائن پارٹنر بننا — کاروباریوں اور بڑھتے ہوئے برانڈز کے لیے۔"},"en":{"name":"Muhammad Ubaidullah","role":"Founder & Creative Director · Ubaid Graphics","bio":"A passionate graphic designer from Pakistan with a keen eye for detail and a drive for creating designs that communicate, persuade, and inspire.","p1":"Ubaid Graphics is a Pakistan-based creative design studio founded by Muhammad Ubaidullah. We help businesses of all sizes build powerful, recognizable brands.","p2":"Whether you're launching a startup or need consistent social media content — we bring creativity, precision, and passion to every project.","missionTitle":"🎯 Our Mission","missionText":"To empower businesses with exceptional design that communicates their story clearly and drives real growth.","visionTitle":"🔭 Our Vision","visionText":"To become Pakistan's most trusted creative design partner for entrepreneurs and growing brands."},"experienceYears":"3"},"contact":{"address":"Pakistan 🇵🇰","form":{"ur":{"title":"رابطہ کریں","nameLabel":"آپ کا نام","namePlaceholder":"اپنا نام لکھیں","emailLabel":"آپ کی ای میل","emailPlaceholder":"example@email.com","serviceLabel":"سروس منتخب کریں","messageLabel":"پیغام","messagePlaceholder":"پروجیکٹ کی تفصیل لکھیں","buttonText":"پیغام بھیجیں","successMsg":"آپ کا پیغام کامیابی سے بھیج دیا گیا ہے!","errorMsg":"ای میل بھیجنے میں خرابی ہوئی!"},"en":{"title":"Contact Us","nameLabel":"Your Name","namePlaceholder":"Enter your name","emailLabel":"Your Email","emailPlaceholder":"example@email.com","serviceLabel":"Select Service","messageLabel":"Message","messagePlaceholder":"Describe your project","buttonText":"Send Message","successMsg":"Your message has been sent successfully!","errorMsg":"Failed to send email!"}}}};
+
+const I18N = {
+  ur: { navCta:'کوٹیشن لیں', btnPortfolioTxt:'پورٹ فولیو دیکھیں', btnContactTxt:'ابھی رابطہ کریں',
+    svcLabel:'ہماری خدمات', svcTitle:'پریمیم ڈیزائن سروسز', svcSub:'برانڈ شناخت سے سوشل میڈیا تک — ہر ڈیزائن میں اثر اور پیشہ واریت کی ضمانت۔',
+    portLabel:'ہمارا کام', portTitle:'نمایاں پورٹ فولیو', portSub:'مختلف ڈیزائن شعبوں میں ہمارے بہترین کاموں کا منتخب مجموعہ۔',
+    aboutLabel:'ہمارے بارے میں', testiLabel:'کلائنٹ جائزے', testiTitle:'ہمارے کلائنٹ کیا کہتے ہیں',
+    faqLabel:'عمومی سوالات', faqTitle:'اکثر پوچھے جانے والے سوالات',
+    contactLabel:'رابطہ کریں', contactTitle:'مل کر کام کریں', contactSub:'کوئی پروجیکٹ ذہن میں ہے؟ ہم آپ کی بات سننا چاہتے ہیں۔ پیغام بھیجیں اور ہم 24 گھنٹوں میں جواب دیں گے۔',
+    waBtnTxt:'واٹس ایپ پر بات کریں', mapTxt:'دنیا بھر میں ریموٹ پروجیکٹس کے لیے دستیاب',
+    lName:'آپ کا نام', lEmail:'ای میل', lService:'سروس کا انتخاب', lMsg:'پروجیکٹ کی تفصیل',
+    iName:'محمد علی', iMsg:'اپنے پروجیکٹ، برانڈ، اہداف اور کوئی حوالہ بتائیں…', svcOpt0:'سروس منتخب کریں…', sendBtnTxt:'پیغام بھیجیں',
+    footerRights:'جملہ حقوق محفوظ ہیں۔', f1h:'سروسز', f2h:'فوری لنکس', f2l1:'ہوم',f2l2:'پورٹ فولیو',f2l3:'ہمارے بارے',f2l4:'جائزے',f2l5:'رابطہ', f3h:'رابطہ',
+    toastMsg:'پیغام بھیج دیا گیا! ہم 24 گھنٹوں میں جواب دیں گے۔', navSubDefault:'تخلیقی ڈیزائن اسٹوڈیو'
+  },
+  en: { navCta:'Get a Quote', btnPortfolioTxt:'View Portfolio', btnContactTxt:'Contact Now',
+    svcLabel:'What We Offer', svcTitle:'Premium Design Services', svcSub:'From brand identity to social media — every design guaranteed to impact and impress.',
+    portLabel:'Our Work', portTitle:'Featured Portfolio', portSub:'A curated selection of our best work across multiple design disciplines.',
+    aboutLabel:'About Us', testiLabel:'Client Reviews', testiTitle:'What Our Clients Say',
+    faqLabel:'FAQ', faqTitle:'Frequently Asked Questions',
+    contactLabel:'Get in Touch', contactTitle:"Let's Work Together", contactSub:"Have a project in mind? Send us a message and we'll get back to you within 24 hours.",
+    waBtnTxt:'Chat on WhatsApp', mapTxt:'Available for remote projects worldwide',
+    lName:'Your Name', lEmail:'Email Address', lService:'Service Needed', lMsg:'Project Details',
+    iName:'Muhammad Ali', iMsg:'Tell us about your project, brand, goals, and any references…', svcOpt0:'Select a service…', sendBtnTxt:'Send Message',
+    footerRights:'All rights reserved.', f1h:'Services', f2h:'Quick Links', f2l1:'Home',f2l2:'Portfolio',f2l3:'About Us',f2l4:'Reviews',f2l5:'Contact', f3h:'Contact',
+    toastMsg:"Message sent! We'll reply within 24 hours.", navSubDefault:'Creative Design Studio'
+  }
+};
+
+let SITE = null;
+let lang = 'ur';
+let activeFilter = null;
+
+async function loadData() {
+  try {
+    const res = await fetch('data.json?v=' + Date.now());
+    if (!res.ok) throw new Error('not ok');
+    SITE = await res.json();
+  } catch (e) {
+    SITE = DEFAULT_DATA;
+  }
+  init();
+}
+
+function waLinkText(num, msgUr, msgEn) {
+  return `https://wa.me/${num}?text=${encodeURIComponent(lang==='ur'?msgUr:msgEn)}`;
+}
+
+function applyBranding() {
+  const b = SITE.branding;
+  const navLogo = document.getElementById('navLogoMark');
+  const footLogo = document.getElementById('footerLogoMark');
+  const heroLogo = document.getElementById('heroLogoCenter');
+  if (b.logoImage) {
+    navLogo.innerHTML = `<img src="${b.logoImage}" alt="logo"/>`;
+    footLogo.innerHTML = `<img src="${b.logoImage}" alt="logo"/>`;
+    heroLogo.innerHTML = `<img src="${b.logoImage}" alt="logo"/>`;
+  } else {
+    navLogo.textContent = b.logoText || 'UG';
+    footLogo.textContent = b.logoText || 'UG';
+    heroLogo.innerHTML = `<span class="logo-ug">${b.logoText||'UG'}</span><span class="logo-tagline">${(b.brandName||'UBAID GRAPHICS').toUpperCase()}</span>`;
+  }
+  document.getElementById('navBrandText').textContent = b.brandName;
+  document.getElementById('footerBrandText').textContent = b.brandName;
+  document.getElementById('footerBrandSpan').textContent = b.brandName;
+
+  const waNum = b.whatsapp;
+  const msgUr = 'السلام علیکم! مجھے ڈیزائن پروجیکٹ کے بارے میں بات کرنی ہے۔';
+  const msgEn = 'Hello! I would like to discuss a design project.';
+  document.getElementById('waLink').href = waLinkText(waNum, msgUr, msgEn);
+  document.getElementById('footerWaLink').href = `https://wa.me/${waNum}`;
+  document.getElementById('footerWaLink2').href = `https://wa.me/${waNum}`;
+  document.getElementById('floatWaLink').href = waLinkText(waNum, 'السلام علیکم! مجھے ڈیزائن پروجیکٹ چاہیے۔', 'Hello! I need a design project.');
+  document.getElementById('mobWaLink').href = `https://wa.me/${waNum}`;
+
+  document.getElementById('contactPhone').textContent = b.phone;
+  document.getElementById('contactEmail').textContent = b.email;
+  document.getElementById('footerPhoneLink').textContent = b.phone;
+  document.getElementById('footerPhoneLink').href = 'tel:' + b.phone;
+  document.getElementById('footerEmailLink').textContent = b.email;
+  document.getElementById('footerEmailLink').href = 'mailto:' + b.email;
+  document.getElementById('fbLink').href = b.facebook || '#';
+  document.getElementById('igLink').href = b.instagram || '#';
+  document.getElementById('liLink').href = b.linkedin || '#';
+}
+
+function setLang(l) {
+  lang = l;
+  const html = document.getElementById('htmlRoot');
+  const body = document.body;
+  if (l === 'en') {
+    html.setAttribute('lang','en'); html.setAttribute('dir','ltr');
+    body.classList.add('lang-en'); body.setAttribute('dir','ltr');
+    document.getElementById('btnEn').classList.add('active');
+    document.getElementById('btnUr').classList.remove('active');
+  } else {
+    html.setAttribute('lang','ur'); html.setAttribute('dir','rtl');
+    body.classList.remove('lang-en'); body.setAttribute('dir','rtl');
+    document.getElementById('btnUr').classList.add('active');
+    document.getElementById('btnEn').classList.remove('active');
+  }
+
+  const s = I18N[l]; const h = SITE.hero[l]; const a = SITE.about[l]; const c = SITE.contact;
+  const f = c.form ? c.form[l] : null;
+
+  document.getElementById('navSub').textContent = s.navSubDefault;
+  document.getElementById('navCta').textContent = s.navCta;
+  document.getElementById('heroBadge').textContent = h.badge;
+  document.getElementById('heroH1').textContent = h.h1;
+  document.getElementById('heroH2').textContent = h.h2;
+  document.getElementById('heroH2').className = 'gradient-text';
+  document.getElementById('heroH3').textContent = h.h3;
+  document.getElementById('heroSub').textContent = h.sub;
+  document.getElementById('btnPortfolioTxt').textContent = s.btnPortfolioTxt;
+  document.getElementById('btnContactTxt').textContent = s.btnContactTxt;
+  document.getElementById('stat1').textContent = h.stat1;
+  document.getElementById('stat2').textContent = h.stat2;
+  document.getElementById('stat3').textContent = h.stat3;
+  document.getElementById('statNum1').innerHTML = SITE.hero.stats.projects + '<span>+</span>';
+  document.getElementById('statNum2').innerHTML = SITE.hero.stats.satisfaction + '<span>%</span>';
+  document.getElementById('statNum3').innerHTML = SITE.hero.stats.years + '<span>+</span>';
+
+  document.getElementById('svcLabel').textContent = s.svcLabel;
+  document.getElementById('svcTitle').textContent = s.svcTitle;
+  document.getElementById('svcSub').textContent = s.svcSub;
+  document.getElementById('portLabel').textContent = s.portLabel;
+  document.getElementById('portTitle').textContent = s.portTitle;
+  document.getElementById('portSub').textContent = s.portSub;
+
+  document.getElementById('aboutLabel').textContent = s.aboutLabel;
+  document.getElementById('aboutTitle').innerHTML = (l==='ur' ? 'شناختیں تخلیق کرنا،<br/>برانڈز بنانا' : 'Crafting Identities,<br/>Building Brands');
+  document.getElementById('aboutBio').textContent = a.bio;
+  document.getElementById('aboutP1').textContent = a.p1;
+  document.getElementById('aboutP2').textContent = a.p2;
+  document.getElementById('missionTitle').textContent = a.missionTitle;
+  document.getElementById('missionText').textContent = a.missionText;
+  document.getElementById('visionTitle').textContent = a.visionTitle;
+  document.getElementById('visionText').textContent = a.visionText;
+  document.getElementById('startBtn').textContent = (l==='ur' ? 'پروجیکٹ شروع کریں ←' : 'Start a Project →');
+  document.getElementById('aboutName').textContent = a.name;
+  document.getElementById('aboutRole').textContent = a.role;
+  document.getElementById('expNum').textContent = SITE.about.experienceYears + '+';
+  const av = document.getElementById('aboutAvatar');
+  if (SITE.about.avatarImage) av.innerHTML = `<img src="${SITE.about.avatarImage}" alt="avatar"/>`;
+  else av.textContent = SITE.about.avatarInitials;
+  document.getElementById('skillsList').innerHTML = SITE.about.skills.map(sk=>`<span class="skill-tag">${sk}</span>`).join('');
+
+  document.getElementById('testiLabel').textContent = s.testiLabel;
+  document.getElementById('testiTitle').textContent = s.testiTitle;
+  document.getElementById('faqLabel').textContent = s.faqLabel;
+  document.getElementById('faqTitle').textContent = s.faqTitle;
+
+  document.getElementById('contactLabel').textContent = s.contactLabel;
+  document.getElementById('contactTitle').textContent = s.contactTitle;
+  document.getElementById('contactSub').textContent = s.contactSub;
+  document.getElementById('waBtnTxt').textContent = s.waBtnTxt;
+  document.getElementById('mapTxt').textContent = s.mapTxt;
+  document.getElementById('contactAddress').textContent = c.address;
+  document.getElementById('mapAddress').textContent = c.address;
+  document.getElementById('footerAddrLink').textContent = c.address;
+
+  // ── FORM FIELDS from data.json ──
+  if (f) {
+    document.getElementById('lName').textContent = f.nameLabel;
+    document.getElementById('lEmail').textContent = f.emailLabel;
+    document.getElementById('lService').textContent = f.serviceLabel;
+    document.getElementById('lMsg').textContent = f.messageLabel;
+    document.getElementById('iName').placeholder = f.namePlaceholder;
+    document.getElementById('iEmail').placeholder = f.emailPlaceholder;
+    document.getElementById('iMsg').placeholder = f.messagePlaceholder;
+    document.getElementById('svcOpt0').textContent = f.serviceLabel + '…';
+    document.getElementById('sendBtnTxt').textContent = f.buttonText;
+    window.__formSuccessMsg = f.successMsg;
+    window.__formErrorMsg = f.errorMsg;
+  } else {
+    document.getElementById('lName').textContent = s.lName;
+    document.getElementById('lEmail').textContent = s.lEmail;
+    document.getElementById('lService').textContent = s.lService;
+    document.getElementById('lMsg').textContent = s.lMsg;
+    document.getElementById('iName').placeholder = s.iName;
+    document.getElementById('iMsg').placeholder = s.iMsg;
+    document.getElementById('svcOpt0').textContent = s.svcOpt0;
+    document.getElementById('sendBtnTxt').textContent = s.sendBtnTxt;
+    window.__formSuccessMsg = s.toastMsg;
+    window.__formErrorMsg = 'کچھ خرابی ہوئی! براہ کرم دوبارہ کوشش کریں۔';
+  }
+
+  document.getElementById('footerDesc').textContent = (l==='ur'
+    ? 'پاکستان سے پریمیم گرافک ڈیزائن سروسز۔ ایسے برانڈز تخلیق کریں جو نمایاں ہوں اور نتائج دیں۔'
+    : 'Premium graphic design services from Pakistan. Crafting brands that stand out and designs that deliver results.');
+  document.getElementById('footerRights').textContent = s.footerRights;
+  document.getElementById('f1h').textContent = s.f1h;
+  document.getElementById('f2h').textContent = s.f2h;
+  document.getElementById('f2l1').textContent = s.f2l1;
+  document.getElementById('f2l2').textContent = s.f2l2;
+  document.getElementById('f2l3').textContent = s.f2l3;
+  document.getElementById('f2l4').textContent = s.f2l4;
+  document.getElementById('f2l5').textContent = s.f2l5;
+  document.getElementById('f3h').textContent = s.f3h;
+
+  document.querySelectorAll('[data-ur]').forEach(el => { el.textContent = l === 'ur' ? el.dataset.ur : el.dataset.en; });
+
+  applyBranding();
+  activeFilter = SITE.filters[l][0];
+  renderMarquee();
+  renderServices();
+  renderFilters();
+  renderPortfolio();
+  renderTestimonials();
+  renderFAQ();
+  renderFooterServices();
+  renderServiceOptions();
+  observeReveal();
+}
+
+function renderMarquee() {
+  const mt = document.getElementById('marqueeTrack');
+  mt.innerHTML = '';
+  const items = [...SITE.marquee[lang],...SITE.marquee[lang],...SITE.marquee[lang],...SITE.marquee[lang]];
+  items.forEach(item => {
+    const d = document.createElement('div');
+    d.className = 'marquee-item';
+    d.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${item}`;
+    mt.appendChild(d);
+  });
+}
+
+function renderServices() {
+  const sg = document.getElementById('servicesGrid');
+  sg.innerHTML = '';
+  SITE.services[lang].forEach((s,i) => {
+    const el = document.createElement('div');
+    el.className = `service-card reveal rd${(i%4)+1}`;
+    const iconHtml = s.image ? `<img src="${s.image}" alt=""/>` : s.icon;
+    el.innerHTML = `
+      <div class="service-icon">${iconHtml}</div>
+      <h3>${s.title}</h3>
+      <p>${s.desc}</p>
+    `;
+    sg.appendChild(el);
+  });
+}
+
+function renderFooterServices() {
+  const ul = document.getElementById('footerServicesList');
+  ul.innerHTML = SITE.services[lang].slice(0,5).map(s=>`<li><a href="#services">${s.title}</a></li>`).join('');
+}
+
+function renderServiceOptions() {
+  const sel = document.getElementById('iService');
+  const opt0 = sel.querySelector('#svcOpt0');
+  sel.innerHTML = '';
+  sel.appendChild(opt0);
+  SITE.services[lang].forEach(s => {
+    const o = document.createElement('option');
+    o.textContent = s.title;
+    sel.appendChild(o);
+  });
+}
+
+function renderFilters() {
+  const ft = document.getElementById('filterTabs');
+  ft.innerHTML = '';
+  SITE.filters[lang].forEach(f => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-tab' + (f === activeFilter ? ' active' : '');
+    btn.textContent = f;
+    btn.onclick = () => {
+      document.querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = f;
+      renderPortfolio();
+    };
+    ft.appendChild(btn);
+  });
+}
+
+const thumbClasses = ['t-logo','t-card','t-social','t-poster','t-brand'];
+function renderPortfolio() {
+  const pg = document.getElementById('portfolioGrid');
+  pg.innerHTML = '';
+  const all = SITE.filters[lang][0];
+  SITE.portfolio[lang]
+    .filter(p => activeFilter === all || p.cat === activeFilter)
+    .forEach((p,i) => {
+      const el = document.createElement('div');
+      el.className = 'portfolio-item reveal';
+      el.style.transitionDelay = (i*0.07)+'s';
+      const thumbCls = thumbClasses[i % thumbClasses.length];
+      const thumbContent = p.image ? `<img src="${p.image}" alt=""/>` : p.emoji;
+      el.innerHTML = `
+        <div class="p-thumb ${p.image ? '' : thumbCls}">${thumbContent}</div>
+        <div class="p-overlay">
+          <div class="p-info">
+            <h4>${p.title}</h4>
+            <span>${p.sub}</span>
+          </div>
+        </div>`;
+      pg.appendChild(el);
+    });
+  observeReveal();
+}
+
+function renderTestimonials() {
+  const tg = document.getElementById('testiGrid');
+  tg.innerHTML = '';
+  SITE.testimonials[lang].forEach((t,i) => {
+    const el = document.createElement('div');
+    el.className = `testi-card reveal rd${(i%3)+1}`;
+    const avHtml = t.avatar ? `<img src="${t.avatar}" alt=""/>` : t.init;
+    el.innerHTML = `
+      <div class="testi-stars">${t.stars}</div>
+      <p class="testi-text">"${t.text}"</p>
+      <div class="testi-author">
+        <div class="testi-av">${avHtml}</div>
+        <div>
+          <div class="testi-name">${t.name}</div>
+          <div class="testi-loc">${t.loc}</div>
+        </div>
+      </div>`;
+    tg.appendChild(el);
+  });
+}
+
+function renderFAQ() {
+  const fg = document.getElementById('faqGrid');
+  fg.innerHTML = '';
+  SITE.faqs[lang].forEach(f => {
+    const el = document.createElement('div');
+    el.className = 'faq-item reveal';
+    el.innerHTML = `
+      <div class="faq-q">
+        <span>${f.q}</span>
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a"><p>${f.a}</p></div>`;
+    el.querySelector('.faq-q').onclick = () => {
+      const wasOpen = el.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if (!wasOpen) el.classList.add('open');
+    };
+    fg.appendChild(el);
+  });
+}
+
+function observeReveal() {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);} });
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>io.observe(el));
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  const secs = document.querySelectorAll('section[id]');
+  let cur = '';
+  secs.forEach(s => { if(window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active-link', a.getAttribute('href') === '#'+cur);
+  });
+});
+
+document.getElementById('hamburger').onclick = () => document.getElementById('mobileNav').classList.add('open');
+document.getElementById('mobileClose').onclick = closeMob;
+function closeMob() { document.getElementById('mobileNav').classList.remove('open'); }
+
+// ── FORM SUBMIT HANDLER ──────────────────────────────────────────
+function handleSubmit(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('iName').value.trim();
+  const email = document.getElementById('iEmail').value.trim();
+  const service = document.getElementById('iService').value;
+  const message = document.getElementById('iMsg').value.trim();
+
+  if (!name || !email || !service || !message) {
+    showToast('⚠️', 'براہ کرم تمام فیلڈز کو بھریں۔ / Please fill all fields.');
+    return;
+  }
+
+  const payload = { name, email, service, message };
+
+  fetch('/send-message', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(payload).toString()
+  })
+  .then(res => res.text())
+  .then(data => {
+    const msg = window.__formSuccessMsg || 'پیغام بھیج دیا گیا!';
+    showToast('✅', msg);
+    document.getElementById('contactForm').reset();
+  })
+  .catch(err => {
+    const msg = window.__formErrorMsg || 'کچھ خرابی ہوئی! براہ کرم دوبارہ کوشش کریں۔';
+    showToast('❌', msg);
+  });
+}
+
+function showToast(icon, msg) {
+  const toast = document.getElementById('toast');
+  document.querySelector('.toast-icon').textContent = icon;
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4500);
+}
+
+function init() {
+  setLang('ur');
+  document.getElementById('pageLoader').classList.add('hide');
+}
+
+loadData();
+
+// ── LIVE RELOAD ───────────────────────────────────────────────────
+(function(){
+  if(!location.hostname.includes('localhost') && !location.hostname.includes('127.0.0.1')) return;
+  function connectSSE(){
+    const es = new EventSource('/api/live');
+    es.onmessage = function(e){
+      if(e.data === 'reload'){
+        loadData();
+      }
+    };
+    es.onerror = function(){ es.close(); setTimeout(connectSSE, 3000); };
+  }
+  connectSSE();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>عبید گرافکس — ایڈمن پینل</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#050d1a; --navy-2:#091427; --navy-card:#0b1a30; --sky:#38bdf8; --royal:#2563eb;
+  --silver:#c8d6e5; --white:#f0f6ff; --muted:#6b89aa; --border:rgba(56,189,248,.15);
+  --radius:12px; --green:#22c55e; --red:#ef4444;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--silver);min-height:100vh;}
+.urdu{font-family:'Noto Nastaliq Urdu',serif;}
+button{cursor:pointer;border:none;font-family:inherit;}
+input,textarea,select{font-family:inherit;}
+
+/* LOGIN */
+#loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;}
+.login-box{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;width:320px;text-align:center;}
+.login-box .lm{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--royal),var(--sky));display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;margin:0 auto 1rem;font-size:1.3rem;}
+.login-box h2{color:var(--white);margin-bottom:.3rem;font-size:1.2rem;}
+.login-box p{font-size:.8rem;color:var(--muted);margin-bottom:1.5rem;}
+.login-box input{width:100%;background:var(--navy-2);border:1px solid var(--border);border-radius:8px;padding:.7rem .9rem;color:var(--white);margin-bottom:.8rem;font-size:.9rem;}
+.login-box button{width:100%;background:linear-gradient(135deg,var(--royal),var(--sky));color:#fff;padding:.7rem;border-radius:8px;font-weight:600;font-size:.9rem;}
+.login-err{color:var(--red);font-size:.78rem;margin-top:.6rem;min-height:1em;}
+
+/* SHELL */
+#adminShell{display:none;min-height:100vh;}
+#sidebar{width:240px;background:var(--navy-2);border-left:1px solid var(--border);padding:1.3rem 1rem;position:fixed;top:0;bottom:0;right:0;overflow-y:auto;}
+.sb-brand{display:flex;align-items:center;gap:.6rem;margin-bottom:1.6rem;padding:0 .3rem;}
+.sb-brand .lm{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--royal),var(--sky));display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:.85rem;flex-shrink:0;}
+.sb-brand div b{color:var(--white);font-size:.92rem;display:block;}
+.sb-brand div span{color:var(--muted);font-size:.7rem;}
+.nav-item{display:flex;align-items:center;gap:.65rem;padding:.7rem .8rem;border-radius:8px;color:var(--muted);font-size:.86rem;font-weight:500;width:100%;text-align:right;margin-bottom:.2rem;transition:.2s;background:none;}
+.nav-item:hover{background:rgba(255,255,255,.04);color:var(--silver);}
+.nav-item.active{background:var(--royal);color:#fff;}
+.nav-item .ic{font-size:1rem;width:20px;text-align:center;}
+
+#main{margin-right:240px;padding:2rem 2.5rem;max-width:980px;}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.8rem;flex-wrap:wrap;gap:1rem;}
+.topbar h1{color:var(--white);font-size:1.4rem;}
+.topbar p{color:var(--muted);font-size:.82rem;margin-top:.2rem;}
+.actions{display:flex;gap:.6rem;}
+.btn{padding:.6rem 1.1rem;border-radius:8px;font-size:.84rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem;}
+.btn-primary{background:linear-gradient(135deg,var(--royal),var(--sky));color:#fff;}
+.btn-ghost{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--silver);}
+.btn-danger{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#fca5a5;}
+.btn-sm{padding:.4rem .8rem;font-size:.76rem;}
+
+.card{background:var(--navy-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;margin-bottom:1.2rem;}
+.card h3{color:var(--white);font-size:.95rem;margin-bottom:.9rem;display:flex;align-items:center;justify-content:space-between;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.field{margin-bottom:.9rem;}
+.field label{display:block;font-size:.74rem;color:var(--muted);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.03em;}
+.field input,.field textarea,.field select{width:100%;background:var(--navy-2);border:1px solid var(--border);border-radius:7px;padding:.6rem .8rem;color:var(--white);font-size:.86rem;}
+.field textarea{min-height:70px;resize:vertical;}
+.lang-pill{display:inline-flex;background:rgba(255,255,255,.05);border-radius:99px;padding:2px;margin-bottom:1rem;}
+.lang-pill button{padding:.35rem .9rem;border-radius:99px;font-size:.78rem;color:var(--muted);font-weight:600;}
+.lang-pill button.active{background:var(--royal);color:#fff;}
+
+.img-row{display:flex;align-items:center;gap:.8rem;}
+.img-prev{width:54px;height:54px;border-radius:8px;background:var(--navy-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:1.4rem;flex-shrink:0;}
+.img-prev img{width:100%;height:100%;object-fit:cover;}
+.upload-btn{font-size:.76rem;padding:.45rem .8rem;}
+.item-card{border:1px solid var(--border);border-radius:9px;padding:1rem;margin-bottom:.8rem;background:rgba(255,255,255,.015);}
+.item-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.7rem;}
+.item-head span{font-size:.8rem;color:var(--sky);font-weight:600;}
+.hint{font-size:.74rem;color:var(--muted);line-height:1.6;margin-bottom:.8rem;}
+.toast2{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--navy-card);border:1px solid var(--sky);color:var(--white);padding:.8rem 1.4rem;border-radius:9px;font-size:.85rem;transition:.3s;z-index:999;}
+.toast2.show{transform:translateX(-50%) translateY(0);}
+.section-hidden{display:none;}
+.badge-count{background:rgba(56,189,248,.15);color:var(--sky);font-size:.68rem;padding:.1rem .5rem;border-radius:99px;}
+@media(max-width:900px){ #sidebar{width:200px;} #main{margin-right:200px;padding:1.3rem;} .grid2{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="lm">UG</div>
+    <h2>عبید گرافکس ایڈمن</h2>
+    <p class="urdu">جاری رکھنے کے لیے لاگ ان کریں</p>
+    <input type="text" id="loginUser" placeholder="Username"/>
+    <input type="password" id="loginPass" placeholder="Password"/>
+    <button onclick="doLogin()">Login</button>
+    <div class="login-err" id="loginErr"></div>
+  </div>
+</div>
+
+<!-- SHELL -->
+<div id="adminShell">
+  <div id="sidebar">
+    <div class="sb-brand">
+      <div class="lm">UG</div>
+      <div><b>Ubaid Graphics</b><span>Admin Panel</span></div>
+    </div>
+    <button class="nav-item active" data-tab="branding"><span class="ic">🏷️</span> برانڈنگ / لوگو</button>
+    <button class="nav-item" data-tab="hero"><span class="ic">🏠</span> ہوم / ہیرو سیکشن</button>
+    <button class="nav-item" data-tab="services"><span class="ic">🎨</span> سروسز</button>
+    <button class="nav-item" data-tab="portfolio"><span class="ic">🖼️</span> پورٹ فولیو</button>
+    <button class="nav-item" data-tab="about"><span class="ic">👤</span> ہمارے بارے میں</button>
+    <button class="nav-item" data-tab="testimonials"><span class="ic">⭐</span> کلائنٹ جائزے</button>
+    <button class="nav-item" data-tab="faq"><span class="ic">❓</span> سوالات (FAQ)</button>
+    <button class="nav-item" data-tab="contact"><span class="ic">📞</span> رابطہ کی معلومات</button>
+    <div style="height:1px;background:var(--border);margin:1rem 0;"></div>
+    <button class="nav-item" id="exportBtn" style="color:var(--green);"><span class="ic">💾</span> تبدیلیاں محفوظ کریں</button>
+    <button class="nav-item" id="logoutBtn" style="color:#fca5a5;"><span class="ic">🚪</span> لاگ آؤٹ</button>
+  </div>
+
+  <div id="main">
+    <div class="topbar">
+      <div>
+        <h1 id="pageTitle" class="urdu">برانڈنگ / لوگو</h1>
+        <p class="urdu" id="modeHint">سرور سے جڑا ہوا ہے — "محفوظ کریں" دباتے ہی ویب سائٹ خود بخود اپڈیٹ ہو جائے گی</p>
+      </div>
+      <div class="actions">
+        <button class="btn btn-ghost" id="resetBtn">🔄 ری سیٹ</button>
+        <button class="btn btn-primary" id="exportBtn2">💾 محفوظ کریں</button>
+      </div>
+    </div>
+
+    <div id="panels"></div>
+  </div>
+</div>
+
+<div class="toast2" id="toast2">محفوظ ہو گیا ✅</div>
+
+<input type="file" id="fileInput" accept="image/*" style="display:none"/>
+
+<script>
+/* ===== DEFAULT DATA (same shape as data.json) ===== */
+const DEFAULT_DATA = {"branding":{"logoText":"UG","logoImage":"","brandName":"Ubaid Graphics","whatsapp":"923278992381","phone":"03278992381","email":"ubaidullah2381@gmail.com","facebook":"#","instagram":"#","linkedin":"#"},"hero":{"stats":{"projects":"200","satisfaction":"100","years":"3"},"ur":{"badge":"✦ نئے پروجیکٹس کے لیے دستیاب","h1":"تخلیقی ڈیزائن","h2":"سولوشنز","h3":" جو نمایاں کریں","sub":"ہم پریمیم بصری شناختیں، زبردست برانڈز اور شاندار گرافکس تخلیق کرتے ہیں جو آپ کے کاروبار کو ناقابلِ فراموش بناتے ہیں — لوگو سے لے کر مکمل برانڈ تجربے تک۔","stat1":"پروجیکٹس مکمل","stat2":"اطمینان کی شرح","stat3":"سال کا تجربہ"},"en":{"badge":"✦ Available for New Projects","h1":"Creative Design","h2":"Solutions","h3":" That Stand Out","sub":"We craft premium visual identities, compelling brands, and stunning graphics that make your business unforgettable — from logos to full brand experiences.","stat1":"Projects Done","stat2":"Satisfaction Rate","stat3":"Years Experience"}},"marquee":{"ur":["لوگو ڈیزائن","بزنس کارڈز","برانڈنگ","سوشل میڈیا","فلائرز","بینرز","تھمب نیلز","اسلامی پوسٹرز"],"en":["Logo Design","Business Cards","Branding","Social Media","Flyers","Banners","Thumbnails","Islamic Posters"]},"services":{"ur":[{"icon":"🎨","image":"","title":"لوگو ڈیزائن","desc":"یادگار اور ورسٹائل لوگو جو آپ کی برانڈ شناخت کو متعین کرتے ہیں۔"},{"icon":"💼","image":"","title":"بزنس کارڈ ڈیزائن","desc":"پیشہ ور کارڈز جو ہر ملاقات پر دیرپا تاثر چھوڑتے ہیں۔"},{"icon":"📱","image":"","title":"سوشل میڈیا پوسٹس","desc":"دلکش مواد جو انگیجمنٹ بڑھاتا اور آپ کی آڈیئنس کو متاثر کرتا ہے۔"},{"icon":"📄","image":"","title":"فلائرز اور بروشر","desc":"پرکشش پرنٹ مواد جو آپ کا پیغام واضح اور خوبصورتی سے پہنچاتا ہے۔"},{"icon":"🖼️","image":"","title":"بینرز","desc":"ایونٹس، پروموشنز اور مہمات کے لیے زبردست ڈیجیٹل اور پرنٹ بینرز۔"},{"icon":"▶️","image":"","title":"یوٹیوب تھمب نیلز","desc":"کلک کشش تھمب نیلز جو آپ کے ویوز اور چینل بڑھاتے ہیں۔"},{"icon":"🕌","image":"","title":"اسلامی پوسٹرز","desc":"روایت اور جدید جمالیات کو یکجا کرتے خوبصورت اسلامی پوسٹرز۔"},{"icon":"🏆","image":"","title":"برانڈنگ ڈیزائن","desc":"مکمل برانڈ سسٹم — حکمتِ عملی سے لے کر برانڈ گائیڈلائنز تک۔"}],"en":[{"icon":"🎨","image":"","title":"Logo Design","desc":"Memorable, versatile logos that define your brand identity and stand the test of time."},{"icon":"💼","image":"","title":"Business Card Design","desc":"Professional cards that leave a lasting first impression at every handshake."},{"icon":"📱","image":"","title":"Social Media Posts","desc":"Eye-catching content designed to boost engagement and grow your audience."},{"icon":"📄","image":"","title":"Flyers & Brochures","desc":"Compelling print materials that communicate your message clearly and beautifully."},{"icon":"🖼️","image":"","title":"Banners","desc":"Impactful digital and print banners for events, promotions, and campaigns."},{"icon":"▶️","image":"","title":"YouTube Thumbnails","desc":"Click-worthy thumbnails proven to increase views and channel growth."},{"icon":"🕌","image":"","title":"Islamic Posters","desc":"Beautifully crafted Islamic posters blending tradition with modern aesthetics."},{"icon":"🏆","image":"","title":"Branding Design","desc":"Complete brand systems – from strategy and visual identity to brand guidelines."}]},"filters":{"ur":["سب","لوگو ڈیزائن","بزنس کارڈز","سوشل میڈیا","پوسٹرز","برانڈنگ"],"en":["All","Logo Design","Business Cards","Social Media","Posters","Branding"]},"portfolio":{"ur":[{"cat":"لوگو ڈیزائن","emoji":"🎨","image":"","title":"ٹیک ویو اسٹارٹ اپ لوگو","sub":"شناخت ڈیزائن"},{"cat":"بزنس کارڈز","emoji":"💼","image":"","title":"ایگزیکٹو بزنس کارڈ","sub":"پرنٹ ڈیزائن"},{"cat":"سوشل میڈیا","emoji":"📱","image":"","title":"انسٹاگرام کمپیگن پیک","sub":"سوشل میڈیا"},{"cat":"پوسٹرز","emoji":"🖼️","image":"","title":"رمضان اسلامی پوسٹر","sub":"پوسٹر ڈیزائن"},{"cat":"برانڈنگ","emoji":"🏆","image":"","title":"مکمل برانڈ آئیڈنٹٹی کٹ","sub":"برانڈ سسٹم"},{"cat":"لوگو ڈیزائن","emoji":"✏️","image":"","title":"منیمل ورڈ مارک","sub":"لوگو ڈیزائن"},{"cat":"سوشل میڈیا","emoji":"📲","image":"","title":"فیس بک ایڈ کریٹوز","sub":"سوشل میڈیا"},{"cat":"بزنس کارڈز","emoji":"🃏","image":"","title":"لگژری فوائل کارڈ ڈیزائن","sub":"پرنٹ ڈیزائن"},{"cat":"پوسٹرز","emoji":"🌙","image":"","title":"عید مبارک اسپیشل","sub":"پوسٹر ڈیزائن"}],"en":[{"cat":"Logo Design","emoji":"🎨","image":"","title":"TechWave Startup Logo","sub":"Identity Design"},{"cat":"Business Cards","emoji":"💼","image":"","title":"Executive Business Card","sub":"Print Design"},{"cat":"Social Media","emoji":"📱","image":"","title":"Instagram Campaign Pack","sub":"Social Media"},{"cat":"Posters","emoji":"🖼️","image":"","title":"Ramadan Islamic Poster","sub":"Poster Design"},{"cat":"Branding","emoji":"🏆","image":"","title":"Full Brand Identity Kit","sub":"Brand System"},{"cat":"Logo Design","emoji":"✏️","image":"","title":"Minimalist Wordmark","sub":"Logo Design"},{"cat":"Social Media","emoji":"📲","image":"","title":"Facebook Ad Creatives","sub":"Social Media"},{"cat":"Business Cards","emoji":"🃏","image":"","title":"Luxury Foil Card Design","sub":"Print Design"},{"cat":"Posters","emoji":"🌙","image":"","title":"Eid Mubarak Special","sub":"Poster Design"}]},"testimonials":{"ur":[{"stars":"★★★★★","avatar":"","init":"AK","text":"محمد عبیداللہ نے ہماری مکمل برانڈ شناخت شروع سے تیار کی۔ لوگو، بزنس کارڈز اور سوشل میڈیا ٹیمپلیٹس سب بالکل شاندار ہیں۔ انتہائی سفارش کی جاتی ہے!","name":"احمد خان","loc":"لاہور، پاکستان"},{"stars":"★★★★★","avatar":"","init":"FM","text":"یوٹیوب تھمب نیلز پر بہترین کام! عبید گرافکس سے ری ڈیزائن کے بعد ہمارا CTR نمایاں طور پر بڑھ گیا۔ انتہائی پیشہ ور اور تیز ڈیلیوری۔","name":"فاطمہ ملک","loc":"کراچی، پاکستان"},{"stars":"★★★★★","avatar":"","init":"UA","text":"بہترین گرافک ڈیزائنر جن کے ساتھ میں نے کام کیا ہے۔ اسلامی پوسٹر ڈیزائن ہماری مسجد کی تقریبات کے لیے بالکل موزوں تھے۔ ماشاءاللہ!","name":"عثمان علی","loc":"اسلام آباد، پاکستان"},{"stars":"★★★★★","avatar":"","init":"ST","text":"عبید گرافکس سے سوشل میڈیا پوسٹس لینے کے بعد ہماری انگیجمنٹ تین گنا بڑھ گئی۔ ڈیزائنز جدید، صاف اور ہر بار برانڈ کے مطابق ہوتے ہیں۔","name":"سارہ طارق","loc":"فیصل آباد، پاکستان"},{"stars":"★★★★★","avatar":"","init":"BH","text":"بہت باصلاحیت ڈیزائنر اور تفصیل پر گہری نظر۔ برانڈنگ پروجیکٹ وقت پر اور بجٹ میں مکمل کیا۔ ضرور دوبارہ کام کریں گے!","name":"بلال حسن","loc":"ملتان، پاکستان"},{"stars":"★★★★★","avatar":"","init":"NQ","text":"عبید نے ہمارے رئیل اسٹیٹ کاروبار کے لیے جو فلائرز اور بروشر بنائے وہ غیر معمولی تھے۔ کلائنٹس اکثر ہمارے پیشہ ور مواد کی تعریف کرتے ہیں۔","name":"نادیہ قریشی","loc":"راولپنڈی، پاکستان"}],"en":[{"stars":"★★★★★","avatar":"","init":"AK","text":"Muhammad Ubaidullah designed our complete brand identity from scratch. The logo, business cards, and templates are absolutely stunning. Highly recommended!","name":"Ahmed Khan","loc":"Lahore, Pakistan"},{"stars":"★★★★★","avatar":"","init":"FM","text":"Amazing work on our YouTube thumbnails! Our CTR increased significantly after redesigning with Ubaid Graphics. Super professional and fast delivery.","name":"Fatima Malik","loc":"Karachi, Pakistan"},{"stars":"★★★★★","avatar":"","init":"UA","text":"Best graphic designer I have worked with. The Islamic poster designs were perfect for our masjid events. Beautiful work, MashAllah!","name":"Usman Ali","loc":"Islamabad, Pakistan"},{"stars":"★★★★★","avatar":"","init":"ST","text":"Our social media engagement tripled after switching to Ubaid Graphics. The designs are modern, clean, and on-brand every single time.","name":"Sara Tariq","loc":"Faisalabad, Pakistan"},{"stars":"★★★★★","avatar":"","init":"BH","text":"Very talented designer with a great eye for detail. Delivered our branding project on time and within budget. Will definitely work with him again!","name":"Bilal Hassan","loc":"Multan, Pakistan"},{"stars":"★★★★★","avatar":"","init":"NQ","text":"The flyers and brochures Ubaid designed for our real estate business were exceptional. Clients often compliment us on our professional materials.","name":"Nadia Qureshi","loc":"Rawalpindi, Pakistan"}]},"faqs":{"ur":[{"q":"لوگو ڈیزائن پروجیکٹ میں کتنا وقت لگتا ہے؟","a":"عام طور پر 3 سے 5 کاروباری دن، 3 ریویژن راؤنڈ سمیت۔ اضافی فیس کے ساتھ 24-48 گھنٹوں میں رش ڈیلیوری بھی ممکن ہے۔"},{"q":"شروع کرنے کے لیے کون سی معلومات چاہیے؟","a":"کاروبار کا نام، صنعت، پسندیدہ رنگ، اسٹائل ریفرنسز (اگر ہوں) اور یہ کہ آپ کا برانڈ کیا ظاہر کرتا ہے۔"},{"q":"کیا آپ ریویژن کرتے ہیں؟","a":"جی ہاں! تمام پروجیکٹس میں کم از کم 2-3 ریویژن راؤنڈ شامل ہیں۔ جب تک آپ 100% مطمئن نہ ہوں ہم کام جاری رکھتے ہیں۔"},{"q":"حتمی فائلز کیسے ملیں گی؟","a":"ای میل یا گوگل ڈرائیو کے ذریعے PDF، PNG، SVG اور AI/PSD سورس فائلز میں ہائی ریزولیوشن فائلز بھیجی جائیں گی۔"},{"q":"کیا آپ بین الاقوامی کلائنٹس کے ساتھ کام کرتے ہیں؟","a":"بالکل! ہم دنیا بھر کے کلائنٹس کے ساتھ کام کرتے ہیں۔ بینک ٹرانسفر، جاز کیش، ایزی پیسہ یا پے پال سے ادائیگی ممکن ہے۔"},{"q":"کیا سوشل میڈیا کے لیے ماہانہ پیکج ملتا ہے؟","a":"جی ہاں، سوشل میڈیا مواد کے لیے ماہانہ ریٹینر پیکج دستیاب ہیں۔ اپنی ضروریات اور بجٹ کے مطابق کسٹم پلان کے لیے رابطہ کریں۔"}],"en":[{"q":"How long does a logo design project take?","a":"Typically 3–5 business days, including up to 3 revision rounds. Rush delivery within 24–48 hours is available for an additional fee."},{"q":"What information do you need to start?","a":"Your business name, industry, preferred colors, style references if any, and a brief description of what your brand represents."},{"q":"Do you offer revision rounds?","a":"Yes! All projects include at least 2–3 revision rounds. We work with you until you are 100% satisfied with the final result."},{"q":"How do I receive the final files?","a":"Final files are delivered via email or Google Drive in PDF, PNG, SVG, and AI/PSD source files as applicable."},{"q":"Can you work with international clients?","a":"Absolutely! We work with clients worldwide. Payments via bank transfer, JazzCash, EasyPaisa, or PayPal."},{"q":"Do you offer monthly social media packages?","a":"Yes, we offer monthly retainer packages for social media content. Contact us to discuss a custom plan that fits your needs and budget."}]},"about":{"avatarImage":"","avatarInitials":"MU","skills":["Adobe Illustrator","Photoshop","Canva Pro","Figma","Brand Identity","Typography","Print Design"],"ur":{"name":"محمد عبیداللہ","role":"Founder & Creative Director · Ubaid Graphics","bio":"پاکستان سے تعلق رکھنے والے ایک پرجوش گرافک ڈیزائنر جو تفصیل پر گہری نظر اور ایسے ڈیزائن تخلیق کرنے کے جذبے سے مالا مال ہیں جو پیغام پہنچائیں، قائل کریں اور تحریک دیں۔","p1":"عبید گرافکس پاکستان میں قائم ایک تخلیقی ڈیزائن اسٹوڈیو ہے جسے محمد عبیداللہ نے قائم کیا۔ ہم ہر سائز کے کاروباروں کو طاقتور، قابلِ شناخت برانڈز بنانے میں مدد کرتے ہیں۔","p2":"چاہے آپ ایک نیا کاروبار شروع کر رہے ہوں، اپنا برانڈ نئے سرے سے ترتیب دے رہے ہوں، یا سوشل میڈیا کے لیے مستقل مواد کی ضرورت ہو — ہم ہر پروجیکٹ میں تخلیقیت، درستگی اور جذبہ لاتے ہیں۔","missionTitle":"🎯 ہمارا مشن","missionText":"کاروباروں کو بہترین ڈیزائن کے ذریعے بااختیار بنانا جو ان کی کہانی واضح طور پر بیان کرے اور حقیقی ترقی کو فروغ دے۔","visionTitle":"🔭 ہمارا وژن","visionText":"پاکستان کا سب سے قابلِ اعتماد تخلیقی ڈیزائن پارٹنر بننا — کاروباریوں اور بڑھتے ہوئے برانڈز کے لیے۔"},"en":{"name":"Muhammad Ubaidullah","role":"Founder & Creative Director · Ubaid Graphics","bio":"A passionate graphic designer from Pakistan with a keen eye for detail and a drive for creating designs that communicate, persuade, and inspire.","p1":"Ubaid Graphics is a Pakistan-based creative design studio founded by Muhammad Ubaidullah. We help businesses of all sizes build powerful, recognizable brands.","p2":"Whether you're launching a startup or need consistent social media content — we bring creativity, precision, and passion to every project.","missionTitle":"🎯 Our Mission","missionText":"To empower businesses with exceptional design that communicates their story clearly and drives real growth.","visionTitle":"🔭 Our Vision","visionText":"To become Pakistan's most trusted creative design partner for entrepreneurs and growing brands."},"experienceYears":"3"},"contact":{"address":"Pakistan 🇵🇰","form":{"ur":{"title":"رابطہ کریں","nameLabel":"آپ کا نام","namePlaceholder":"اپنا نام لکھیں","emailLabel":"آپ کی ای میل","emailPlaceholder":"example@email.com","serviceLabel":"سروس منتخب کریں","messageLabel":"پیغام","messagePlaceholder":"پروجیکٹ کی تفصیل لکھیں","buttonText":"پیغام بھیجیں","successMsg":"آپ کا پیغام کامیابی سے بھیج دیا گیا ہے!","errorMsg":"ای میل بھیجنے میں خرابی ہوئی!"},"en":{"title":"Contact Us","nameLabel":"Your Name","namePlaceholder":"Enter your name","emailLabel":"Your Email","emailPlaceholder":"example@email.com","serviceLabel":"Select Service","messageLabel":"Message","messagePlaceholder":"Describe your project","buttonText":"Send Message","successMsg":"Your message has been sent successfully!","errorMsg":"Failed to send email!"}}}};
+
+const ADMIN_USER = 'ubaid';
+const ADMIN_PASS = 'UbaidGraphics@2024';
+
+let state = null;
+let curTab = 'branding';
+let langPick = {services:'ur', portfolio:'ur', testimonials:'ur', faq:'ur', about:'ur', hero:'ur', marquee:'ur', contact:'ur'};
+
+function deepClone(o){ return JSON.parse(JSON.stringify(o)); }
+
+async function loadState(){
+  try {
+    const res = await fetch('data.json?v='+Date.now());
+    if(!res.ok) throw 0;
+    state = await res.json();
+  } catch(e){
+    state = deepClone(DEFAULT_DATA);
+  }
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast2');
+  t.textContent = msg || 'محفوظ ہو گیا ✅';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+/* ===== LOGIN ===== */
+function doLogin(){
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  if(u === ADMIN_USER && p === ADMIN_PASS){
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminShell').style.display = 'flex';
+    boot();
+  } else {
+    document.getElementById('loginErr').textContent = 'غلط یوزر نیم یا پاس ورڈ';
+  }
+}
+document.getElementById('loginPass').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+
+document.getElementById('logoutBtn').onclick = () => {
+  document.getElementById('adminShell').style.display='none';
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+};
+
+/* ===== NAV ===== */
+const tabTitles = {
+  branding:'برانڈنگ / لوگو', hero:'ہوم / ہیرو سیکشن', services:'سروسز', portfolio:'پورٹ فولیو',
+  about:'ہمارے بارے میں', testimonials:'کلائنٹ جائزے', faq:'سوالات (FAQ)', contact:'رابطہ کی معلومات'
+};
+
+function boot(){
+  loadState().then(()=>{
+    document.querySelectorAll('.nav-item[data-tab]').forEach(b=>{
+      b.onclick = () => { curTab = b.dataset.tab; setActiveNav(); renderTab(); };
+    });
+    setActiveNav();
+    renderTab();
+  });
+}
+
+function setActiveNav(){
+  document.querySelectorAll('.nav-item[data-tab]').forEach(b=>b.classList.toggle('active', b.dataset.tab===curTab));
+  document.getElementById('pageTitle').textContent = tabTitles[curTab];
+}
+
+document.getElementById('exportBtn').onclick = exportJSON;
+document.getElementById('exportBtn2').onclick = exportJSON;
+document.getElementById('resetBtn').onclick = () => {
+  if(confirm('کیا آپ واقعی تمام تبدیلیاں ری سیٹ کرنا چاہتے ہیں؟ (یہ صرف اس ایڈیٹر میں ری سیٹ ہوگا)')){
+    state = deepClone(DEFAULT_DATA);
+    renderTab();
+    showToast('ری سیٹ ہو گیا');
+  }
+};
+
+async function exportJSON(){
+  try {
+    const res = await fetch('/api/save', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(state)
+    });
+    if(res.ok){
+      showToast('✅ محفوظ ہو گیا — ویب سائٹ خود بخود اپڈیٹ ہو رہی ہے!');
+      return;
+    }
+  } catch(e){ /* fall back to download */ }
+
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'data.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('⬇️ data.json ڈاؤن لوڈ ہو گیا — اسے سائٹ کے فولڈر میں رکھیں');
+}
+
+/* ===== IMAGE PICKER HELPER ===== */
+let pendingImageCallback = null;
+document.getElementById('fileInput').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    if(pendingImageCallback) pendingImageCallback(ev.target.result);
+    e.target.value = '';
+  };
+  reader.readAsDataURL(file);
+});
+function pickImage(cb){ pendingImageCallback = cb; document.getElementById('fileInput').click(); }
+
+/* ===== RENDER DISPATCH ===== */
+function renderTab(){
+  const root = document.getElementById('panels');
+  root.innerHTML = '';
+  if(curTab==='branding') renderBranding(root);
+  else if(curTab==='hero') renderHero(root);
+  else if(curTab==='services') renderServices(root);
+  else if(curTab==='portfolio') renderPortfolio(root);
+  else if(curTab==='about') renderAbout(root);
+  else if(curTab==='testimonials') renderTestimonials(root);
+  else if(curTab==='faq') renderFAQ(root);
+  else if(curTab==='contact') renderContact(root);
+}
+
+function langSwitcher(key, onchange){
+  const wrap = document.createElement('div');
+  wrap.className = 'lang-pill';
+  ['ur','en'].forEach(l=>{
+    const b = document.createElement('button');
+    b.textContent = l==='ur' ? 'اردو' : 'English';
+    b.className = langPick[key]===l ? 'active' : '';
+    b.onclick = () => { langPick[key]=l; onchange(); };
+    wrap.appendChild(b);
+  });
+  return wrap;
+}
+
+function field(label, value, oninput, type){
+  const f = document.createElement('div'); f.className='field';
+  const l = document.createElement('label'); l.textContent = label; f.appendChild(l);
+  const inp = (type==='textarea') ? document.createElement('textarea') : document.createElement('input');
+  if(type && type!=='textarea') inp.type = type;
+  inp.value = value || '';
+  inp.oninput = (e)=>oninput(e.target.value);
+  f.appendChild(inp);
+  return f;
+}
+
+function imageField(label, value, onchange){
+  const f = document.createElement('div'); f.className='field';
+  const l = document.createElement('label'); l.textContent = label; f.appendChild(l);
+  const row = document.createElement('div'); row.className='img-row';
+  const prev = document.createElement('div'); prev.className='img-prev';
+  prev.innerHTML = value ? `<img src="${value}"/>` : '🖼️';
+  const btn = document.createElement('button'); btn.className='btn btn-ghost upload-btn'; btn.textContent='📤 تصویر منتخب کریں';
+  btn.onclick = () => pickImage(v => { onchange(v); prev.innerHTML = `<img src="${v}"/>`; });
+  const rm = document.createElement('button'); rm.className='btn btn-ghost upload-btn'; rm.textContent='✕ ہٹائیں';
+  rm.onclick = () => { onchange(''); prev.innerHTML='🖼️'; };
+  row.appendChild(prev); row.appendChild(btn); row.appendChild(rm);
+  f.appendChild(row);
+  return f;
+}
+
+/* ===== BRANDING ===== */
+function renderBranding(root){
+  const b = state.branding;
+  const c = document.createElement('div'); c.className='card';
+  c.innerHTML = `<h3>لوگو اور برانڈ</h3>`;
+  c.appendChild(imageField('لوگو تصویر (اپلوڈ کریں)', b.logoImage, v=>{ b.logoImage=v; }));
+  c.appendChild(field('لوگو ٹیکسٹ (اگر تصویر نہ ہو تو یہ دکھایا جائے گا)', b.logoText, v=>b.logoText=v));
+  c.appendChild(field('برانڈ کا نام', b.brandName, v=>b.brandName=v));
+  root.appendChild(c);
+
+  const c2 = document.createElement('div'); c2.className='card';
+  c2.innerHTML = `<h3>رابطہ نمبرز اور لنکس</h3>`;
+  c2.appendChild(field('واٹس ایپ نمبر (کنٹری کوڈ کے ساتھ، بغیر + کے)', b.whatsapp, v=>b.whatsapp=v));
+  c2.appendChild(field('فون نمبر', b.phone, v=>b.phone=v));
+  c2.appendChild(field('ای میل', b.email, v=>b.email=v));
+  const g = document.createElement('div'); g.className='grid2';
+  g.appendChild(field('فیس بک لنک', b.facebook, v=>b.facebook=v));
+  g.appendChild(field('انسٹاگرام لنک', b.instagram, v=>b.instagram=v));
+  c2.appendChild(g);
+  c2.appendChild(field('لنکڈ ان لنک', b.linkedin, v=>b.linkedin=v));
+  root.appendChild(c2);
+}
+
+/* ===== HERO ===== */
+function renderHero(root){
+  root.appendChild(langSwitcher('hero', ()=>renderTab()));
+  const l = langPick.hero;
+  const h = state.hero[l];
+  const c = document.createElement('div'); c.className='card';
+  c.innerHTML = `<h3>ہیرو سیکشن متن (${l==='ur'?'اردو':'English'})</h3>`;
+  c.appendChild(field('بیج ٹیکسٹ', h.badge, v=>h.badge=v));
+  c.appendChild(field('عنوان حصہ 1', h.h1, v=>h.h1=v));
+  c.appendChild(field('عنوان حصہ 2 (گریڈینٹ)', h.h2, v=>h.h2=v));
+  c.appendChild(field('عنوان حصہ 3', h.h3, v=>h.h3=v));
+  c.appendChild(field('ذیلی متن', h.sub, v=>h.sub=v, 'textarea'));
+  root.appendChild(c);
+
+  const c2 = document.createElement('div'); c2.className='card';
+  c2.innerHTML = `<h3>اعداد و شمار (Stats) — دونوں زبانوں میں مشترک نمبر</h3>`;
+  const g = document.createElement('div'); g.className='grid2';
+  g.appendChild(field('پروجیکٹس نمبر', state.hero.stats.projects, v=>state.hero.stats.projects=v));
+  g.appendChild(field('اطمینان فیصد', state.hero.stats.satisfaction, v=>state.hero.stats.satisfaction=v));
+  c2.appendChild(g);
+  c2.appendChild(field('تجربہ سالوں میں', state.hero.stats.years, v=>state.hero.stats.years=v));
+  c2.appendChild(field(`لیبل: ${l==='ur'?'پروجیکٹس مکمل':'Projects Done'}`, h.stat1, v=>h.stat1=v));
+  c2.appendChild(field(`لیبل: ${l==='ur'?'اطمینان کی شرح':'Satisfaction Rate'}`, h.stat2, v=>h.stat2=v));
+  c2.appendChild(field(`لیبل: ${l==='ur'?'سال کا تجربہ':'Years Experience'}`, h.stat3, v=>h.stat3=v));
+  root.appendChild(c2);
+
+  const c3 = document.createElement('div'); c3.className='card';
+  c3.innerHTML = `<h3>اوپر چلتی پٹی (Marquee) — ${l==='ur'?'اردو':'English'}</h3>`;
+  state.marquee[l].forEach((m,i)=>{
+    const row = document.createElement('div'); row.className='item-card';
+    const head = document.createElement('div'); head.className='item-head';
+    head.innerHTML = `<span>آئٹم ${i+1}</span>`;
+    const del = document.createElement('button'); del.className='btn btn-danger btn-sm'; del.textContent='حذف کریں';
+    del.onclick = ()=>{ state.marquee[l].splice(i,1); renderTab(); };
+    head.appendChild(del);
+    row.appendChild(head);
+    row.appendChild(field('ٹیکسٹ', m, v=>state.marquee[l][i]=v));
+    c3.appendChild(row);
+  });
+  const addBtn = document.createElement('button'); addBtn.className='btn btn-primary btn-sm'; addBtn.textContent='+ نیا آئٹم شامل کریں';
+  addBtn.onclick = ()=>{ state.marquee[l].push(l==='ur'?'نیا آئٹم':'New Item'); renderTab(); };
+  c3.appendChild(addBtn);
+  root.appendChild(c3);
+}
+
+/* ===== SERVICES ===== */
+function renderServices(root){
+  root.appendChild(langSwitcher('services', ()=>renderTab()));
+  const l = langPick.services;
+  const hint = document.createElement('div'); hint.className='hint';
+  hint.textContent = l==='ur' ? 'ہر سروس کے لیے آئیکون (ایموجی) یا اپنی تصویر اپلوڈ کریں۔ تصویر موجود ہو تو وہ آئیکون کی جگہ دکھائی جائے گی۔' : 'Upload an icon (emoji) or an image for each service. If image exists, it will replace the icon.';
+  root.appendChild(hint);
+
+  state.services[l].forEach((s,i)=>{
+    const card = document.createElement('div'); card.className='card';
+    const head = document.createElement('h3');
+    head.innerHTML = `${l==='ur'?'سروس':'Service'} ${i+1} <span class="badge-count"></span>`;
+    const del = document.createElement('button'); del.className='btn btn-danger btn-sm'; del.textContent=l==='ur'?'حذف کریں':'Delete';
+    del.onclick = ()=>{ state.services[l].splice(i,1); renderTab(); };
+    head.appendChild(del);
+    card.appendChild(head);
+    card.appendChild(field(l==='ur'?'عنوان':'Title', s.title, v=>s.title=v));
+    card.appendChild(field(l==='ur'?'تفصیل':'Description', s.desc, v=>s.desc=v, 'textarea'));
+    card.appendChild(field(l==='ur'?'ایموجی آئیکون (مثلاً 🎨)':'Emoji Icon (e.g. 🎨)', s.icon, v=>s.icon=v));
+    card.appendChild(imageField(l==='ur'?'یا تصویر اپلوڈ کریں (اختیاری)':'Or upload image (optional)', s.image, v=>s.image=v));
+    root.appendChild(card);
+  });
+  const addBtn = document.createElement('button'); addBtn.className='btn btn-primary'; addBtn.textContent=l==='ur'?'+ نئی سروس شامل کریں':'+ Add New Service';
+  addBtn.onclick = ()=>{ state.services[l].push({icon:'✨', image:'', title:l==='ur'?'نئی سروس':'New Service', desc:l==='ur'?'تفصیل یہاں لکھیں':'Description here'}); renderTab(); };
+  root.appendChild(addBtn);
+}
+
+/* ===== PORTFOLIO ===== */
+function renderPortfolio(root){
+  root.appendChild(langSwitcher('portfolio', ()=>renderTab()));
+  const l = langPick.portfolio;
+
+  const fc = document.createElement('div'); fc.className='card';
+  fc.innerHTML = `<h3>${l==='ur'?'فلٹر کیٹیگریز':'Filter Categories'} (${l==='ur'?'اردو':'English'})</h3>`;
+  state.filters[l].forEach((f,i)=>{
+    const row = document.createElement('div'); row.className='item-card';
+    const head = document.createElement('div'); head.className='item-head';
+    head.innerHTML = `<span>${l==='ur'?'کیٹیگری':'Category'} ${i+1}</span>`;
+    if(i>0){
+      const del = document.createElement('button'); del.className='btn btn-danger btn-sm'; del.textContent=l==='ur'?'حذف کریں':'Delete';
+      del.onclick = ()=>{ state.filters[l].splice(i,1); renderTab(); };
+      head.appendChild(del);
+    }
+    row.appendChild(head);
+    row.appendChild(field(l==='ur'?'نام':'Name', f, v=>state.filters[l][i]=v));
+    fc.appendChild(row);
+  });
+  const addF = document.createElement('button'); addF.className='btn btn-primary btn-sm'; addF.textContent=l==='ur'?'+ نئی کیٹیگری':'+ New Category';
+  addF.onclick = ()=>{ state.filters[l].push(l==='ur'?'نئی کیٹیگری':'New Category'); renderTab(); };
+  fc.appendChild(addF);
+  root.appendChild(fc);
+
+  const hint = document.createElement('div'); hint.className='hint';
+  hint.textContent = l==='ur' ? 'ہر پورٹ فولیو آئٹم کی کیٹیگری بالکل اوپر دی گئی فہرست میں سے کسی ایک نام جیسی ہونی چاہیے۔' : 'Each portfolio item category must match one of the categories listed above.';
+  root.appendChild(hint);
+
+  state.portfolio[l].forEach((p,i)=>{
+    const card = document.createElement('div'); card.className='card';
+    const head = document.createElement('h3'); head.textContent = `${l==='ur'?'پورٹ فولیو آئٹم':'Portfolio Item'} ${i+1}`;
+    const del = document.createElement('button'); del.className='btn btn-danger btn-sm'; del.textContent=l==='ur'?'حذف کریں':'Delete';
+    del.onclick = ()=>{ state.portfolio[l].splice(i,1); renderTab(); };
+    head.appendChild(del);
+    card.appendChild(head);
+    card.appendChild(field(l==='ur'?'عنوان':'Title', p.title, v=>p.title=v));
+    card.appendChild(field(l==='ur'?'سب ٹائٹل':'Subtitle', p.sub, v=>p.sub=v));
+    const sel = document.createElement('div'); sel.className='field';
+    sel.innerHTML = `<label>${l==='ur'?'کیٹیگری':'Category'}</label>`;
+    const selEl = document.createElement('select');
+    state.filters[l].filter(f=>f!==state.filters[l][0]).forEach(f=>{
+      const o = document.createElement('option'); o.textContent=f; o.value=f; if(f===p.cat) o.selected=true;
+      selEl.appendChild(o);
+    });
+    selEl.onchange = (e)=>p.cat=e.target.value;
+    sel.appendChild(selEl);
+    card.appendChild(sel);
+    card.appendChild(field(l==='ur'?'ایموجی (تصویر نہ ہو تو دکھایا جائے گا)':'Emoji (shown if no image)', p.emoji, v=>p.emoji=v));
+    card.appendChild(imageField(l==='ur'?'کام کی تصویر اپلوڈ کریں':'Upload work image', p.image, v=>p.image=v));
+    root.appendChild(card);
+  });
+  const addBtn = document.createElement('button'); addBtn.className='btn btn-primary'; addBtn.textContent=l==='ur'?'+ نیا پورٹ فولیو آئٹم شامل کریں':'+ Add New Portfolio Item';
+  addBtn.onclick = ()=>{ state.portfolio[l].push({cat:state.filters[l][1]||state.filters[l][0], emoji:'🖼️', image:'', title:l==='ur'?'نیا کام':'New Work', sub:l==='ur'?'تفصیل':'Description'}); renderTab(); };
+  root.appendChild(addBtn);
+}
+
+/* ===== ABOUT ===== */
+function renderAbout(root){
+  const c0 = document.createElement('div'); c0.className='card';
+  c0.innerHTML = `<h3>${langPick.about==='ur'?'پروفائل تصویر اور مہارتیں':'Profile Image & Skills'}</h3>`;
+  c0.appendChild(imageField(langPick.about==='ur'?'پروفائل تصویر اپلوڈ کریں':'Upload Profile Image', state.about.avatarImage, v=>state.about.avatarImage=v));
+  c0.appendChild(field(langPick.about==='ur'?'شروعاتی حروف (اگر تصویر نہ ہو)':'Initials (if no image)', state.about.avatarInitials, v=>state.about.avatarInitials=v));
+  c0.appendChild(field(langPick.about==='ur'?'تجربہ (سالوں میں)':'Experience (in years)', state.about.experienceYears, v=>state.about.experienceYears=v));
+  root.appendChild(c0);
+
+  const skillsCard = document.createElement('div'); skillsCard.className='card';
+  skillsCard.innerHTML = `<h3>${langPick.about==='ur'?'مہارتیں (Skills Tags)':'Skills Tags'}</h3>`;
+  state.about.skills.forEach((sk,i)=>{
+    const row = document.createElement('div'); row.className='item-card';
+    const head = document.createElement('div'); head.className='item-head';
+    head.innerHTML = `<span>${langPick.about==='ur'?'مہارت':'Skill'} ${i+1}</span>`;
+    const del = document.createElement('button'); del.className='btn btn-danger btn-sm'; del.textContent=langPick.about==='ur'?'حذف کریں':'Delete';
+    del.onclick = ()=>{ state.about.skills.splice(i,1); renderTab(); };
+    head.appendChild(del);
+    row.appendChild(head);
+    row.appendChild(field(langPick.about==='ur'?'نام':'Name', sk, v=>state.about.skills[i]=v));
+    skillsCard.appendChild(row);
+  });
+  const addSk = document.createElement('button'); addSk.className='btn btn-primary btn-sm'; addSk.textContent=langPick.about==='ur'?'+ نئی مہارت':'+ New Skill';
+  addSk.onclick = ()=>{ state.about.skills.push('New Skill'); renderTab(); };
+  skillsCard.appendChild(addSk);
+  root.appendChild(skillsCard);
+
+  root.appendChild(langSwitcher('about', ()=>renderTab()));
+  const l = langPick.about;
+  const a = state.about[l];
+  const c = document.createElement('div'); c.className='card';
+  c.innerHTML = `<h3>تعارف کا متن (${l==='ur'?'اردو':'English'})</h3>`;
+  c.appendChild(field(l==='ur'?'نام':'Name', a.name, v=>a.name=v));
+  c.appendChild(field(l==='ur'?'عہدہ / رول':'Role', a.role, v=>a.role=v));
+  c.appendChild(field(l==='ur'?'مختصر بائیو':'Short Bio', a.bio, v=>a.bio=v, 'textarea'));
+  c.appendChild(field(l==='ur'?'پیراگراف 1':'Paragraph 1', a.p1, v=>a.p1=v, 'textarea'));
+  c.appendChild(field(l==='ur'?'پیراگراف 2':'Paragraph 2', a.p2, v=>a.p2=v, 'textarea'));
+  c.appendChild(field(l==='ur'?'مشن کا عنوان':'Mission Title', a.missionTitle, v=>a.missionTitle=v));
+  c.appendChild(field(l==='ur'?'مشن کا متن':'Mission Text', a.missionText, v=>a.missionText=v, 'textarea'));
+  c.appendChild(field(l==='ur'?'وژن کا عنوان':'Vision Title', a.visionTitle, v=>a.visionTitle=v));
+  c.appendChild(field(l==='ur'?'وژن کا متن':'Vision Text', a.visionText, v=>a.visionText=v, 'textarea'));
+  root.appendChild(c);
+}
+
+/* ===== TESTIMONIALS ===== */
+function renderTestimonials(root){
+  root.appendChild(langSwitcher('testimonials', ()=>renderTab()));
+  const l = langPick.testimonials;
+  state.testimonials[l].forEach((t,i)=>{
+    const card = document.createElement('div'); card.className='card';
+    const head = document.createElement('h3'); head.textContent = `${l==='ur'?'جائزہ':'Review'} ${i+1}`;
+    const del = document.createElement('button'); del.className='btn btn-danger btn-sm'; del.textContent=l==='ur'?'حذف کریں':'Delete';
+    del.onclick = ()=>{ state.testimonials[l].splice(i,1); renderTab(); };
+    head.appendChild(del);
+    card.appendChild(head);
+    card.appendChild(field(l==='ur'?'کلائنٹ کا نام':'Client Name', t.name, v=>t.name=v));
+    card.appendChild(field(l==='ur'?'مقام':'Location', t.loc, v=>t.loc=v));
+    card.appendChild(field(l==='ur'?'ریٹنگ (ستارے)':'Rating (stars)', t.stars, v=>t.stars=v));
+    card.appendChild(field(l==='ur'?'تعریفی جملہ':'Review Text', t.text, v=>t.text=v, 'textarea'));
+    card.appendChild(field(l==='ur'?'شروعاتی حروف (اگر تصویر نہ ہو)':'Initials (if no image)', t.init, v=>t.init=v));
+    card.appendChild(imageField(l==='ur'?'کلائنٹ کی تصویر اپلوڈ کریں':'Upload client image', t.avatar, v=>t.avatar=v));
+    root.appendChild(card);
+  });
+  const addBtn = document.createElement('button'); addBtn.className='btn btn-primary'; addBtn.textContent=l==='ur'?'+ نیا جائزہ شامل کریں':'+ Add New Review';
+  addBtn.onclick = ()=>{ state.testimonials[l].push({stars:'★★★★★',avatar:'',init:'XX',text:l==='ur'?'نیا جائزہ یہاں لکھیں':'New review here',name:l==='ur'?'نام':'Name',loc:l==='ur'?'مقام':'Location'}); renderTab(); };
+  root.appendChild(addBtn);
+}
+
+/* ===== FAQ ===== */
+function renderFAQ(root){
+  root.appendChild(langSwitcher('faq', ()=>renderTab()));
+  const l = langPick.faq;
+  state.faqs[l].forEach((f,i)=>{
+    const card = document.createElement('div'); card.className='card';
+    const head = document.createElement('h3'); head.textContent = `${l==='ur'?'سوال':'Question'} ${i+1}`;
+    const del = document.createElement('button'); del.className='btn btn-danger btn-sm'; del.textContent=l==='ur'?'حذف کریں':'Delete';
+    del.onclick = ()=>{ state.faqs[l].splice(i,1); renderTab(); };
+    head.appendChild(del);
+    card.appendChild(head);
+    card.appendChild(field(l==='ur'?'سوال':'Question', f.q, v=>f.q=v));
+    card.appendChild(field(l==='ur'?'جواب':'Answer', f.a, v=>f.a=v, 'textarea'));
+    root.appendChild(card);
+  });
+  const addBtn = document.createElement('button'); addBtn.className='btn btn-primary'; addBtn.textContent=l==='ur'?'+ نیا سوال شامل کریں':'+ Add New Question';
+  addBtn.onclick = ()=>{ state.faqs[l].push({q:l==='ur'?'نیا سوال':'New Question',a:l==='ur'?'جواب یہاں لکھیں':'Answer here'}); renderTab(); };
+  root.appendChild(addBtn);
+}
+
+/* ===== CONTACT ===== */
+function renderContact(root){
+  // Address
+  const c = document.createElement('div'); c.className='card';
+  c.innerHTML = `<h3>${langPick.contact==='ur'?'مقام / پتہ':'Location / Address'}</h3>`;
+  c.appendChild(field(langPick.contact==='ur'?'پتہ / مقام':'Address / Location', state.contact.address, v=>state.contact.address=v));
+  root.appendChild(c);
+
+  // ─── LANGUAGE SWITCHER FOR CONTACT FORM ───
+  root.appendChild(langSwitcher('contact', ()=>renderTab()));
+  const l = langPick.contact;
+  
+  // Make sure form exists
+  if (!state.contact.form) {
+    state.contact.form = {
+      ur: { title: 'رابطہ کریں', nameLabel: 'آپ کا نام', namePlaceholder: 'اپنا نام لکھیں', emailLabel: 'آپ کی ای میل', emailPlaceholder: 'example@email.com', serviceLabel: 'سروس منتخب کریں', messageLabel: 'پیغام', messagePlaceholder: 'پروجیکٹ کی تفصیل لکھیں', buttonText: 'پیغام بھیجیں', successMsg: 'آپ کا پیغام کامیابی سے بھیج دیا گیا ہے!', errorMsg: 'ای میل بھیجنے میں خرابی ہوئی!' },
+      en: { title: 'Contact Us', nameLabel: 'Your Name', namePlaceholder: 'Enter your name', emailLabel: 'Your Email', emailPlaceholder: 'example@email.com', serviceLabel: 'Select Service', messageLabel: 'Message', messagePlaceholder: 'Describe your project', buttonText: 'Send Message', successMsg: 'Your message has been sent successfully!', errorMsg: 'Failed to send email!' }
+    };
+  }
+
+  const f = state.contact.form[l];
+  
+  const formCard = document.createElement('div'); formCard.className='card';
+  formCard.innerHTML = `<h3>${l==='ur'?'رابطہ فارم کی ترتیبات':'Contact Form Settings'} (${l==='ur'?'اردو':'English'})</h3>`;
+  
+  // Title
+  formCard.appendChild(field(l==='ur'?'فارم کا عنوان':'Form Title', f.title, v=>f.title=v));
+  
+  // Name field
+  formCard.appendChild(field(l==='ur'?'نام کا لیبل':'Name Label', f.nameLabel, v=>f.nameLabel=v));
+  formCard.appendChild(field(l==='ur'?'نام کا پلیس ہولڈر':'Name Placeholder', f.namePlaceholder, v=>f.namePlaceholder=v));
+  
+  // Email field
+  formCard.appendChild(field(l==='ur'?'ای میل کا لیبل':'Email Label', f.emailLabel, v=>f.emailLabel=v));
+  formCard.appendChild(field(l==='ur'?'ای میل کا پلیس ہولڈر':'Email Placeholder', f.emailPlaceholder, v=>f.emailPlaceholder=v));
+  
+  // Service field (dropdown - auto populated from services)
+  formCard.appendChild(field(l==='ur'?'سروس کا لیبل':'Service Label', f.serviceLabel, v=>f.serviceLabel=v));
+  
+  // Message field
+  formCard.appendChild(field(l==='ur'?'پیغام کا لیبل':'Message Label', f.messageLabel, v=>f.messageLabel=v));
+  formCard.appendChild(field(l==='ur'?'پیغام کا پلیس ہولڈر':'Message Placeholder', f.messagePlaceholder, v=>f.messagePlaceholder=v));
+  
+  // Button text
+  formCard.appendChild(field(l==='ur'?'بٹن کا ٹیکسٹ':'Button Text', f.buttonText, v=>f.buttonText=v));
+  
+  // Success/Error messages
+  formCard.appendChild(field(l==='ur'?'کامیابی کا پیغام':'Success Message', f.successMsg, v=>f.successMsg=v));
+  formCard.appendChild(field(l==='ur'?'خرابی کا پیغام':'Error Message', f.errorMsg, v=>f.errorMsg=v));
+  
+  root.appendChild(formCard);
+
+  // Preview of the form (read-only preview)
+  const previewCard = document.createElement('div'); previewCard.className='card';
+  previewCard.innerHTML = `<h3>${l==='ur'?'فارم کا نمونہ':'Form Preview'} (${l==='ur'?'اردو':'English'}) — ${l==='ur'?'صرف دیکھنے کے لیے':'Preview Only'}</h3>`;
+  
+  // Get service names for dropdown preview
+  const serviceNames = state.services[l] ? state.services[l].map(s => s.title) : ['Logo Design', 'Business Cards'];
+  
+  previewCard.innerHTML += `
+    <div style="background:var(--navy-2);padding:1.2rem;border-radius:8px;border:1px solid var(--border);">
+      <form id="contactFormPreview" style="display:flex;flex-direction:column;gap:0.8rem;" onsubmit="event.preventDefault();">
+        <div>
+          <label style="display:block;font-size:.8rem;color:var(--muted);margin-bottom:.2rem;">${f.nameLabel}</label>
+          <input type="text" placeholder="${f.namePlaceholder}" style="width:100%;background:var(--navy);border:1px solid var(--border);border-radius:6px;padding:.6rem .8rem;color:var(--white);font-size:.85rem;" disabled/>
+        </div>
+        <div>
+          <label style="display:block;font-size:.8rem;color:var(--muted);margin-bottom:.2rem;">${f.emailLabel}</label>
+          <input type="email" placeholder="${f.emailPlaceholder}" style="width:100%;background:var(--navy);border:1px solid var(--border);border-radius:6px;padding:.6rem .8rem;color:var(--white);font-size:.85rem;" disabled/>
+        </div>
+        <div>
+          <label style="display:block;font-size:.8rem;color:var(--muted);margin-bottom:.2rem;">${f.serviceLabel}</label>
+          <select style="width:100%;background:var(--navy);border:1px solid var(--border);border-radius:6px;padding:.6rem .8rem;color:var(--white);font-size:.85rem;" disabled>
+            ${serviceNames.map(s => `<option>${s}</option>`).join('')}
+          </select>
+        </div>
+        <div>
+          <label style="display:block;font-size:.8rem;color:var(--muted);margin-bottom:.2rem;">${f.messageLabel}</label>
+          <textarea placeholder="${f.messagePlaceholder}" style="width:100%;background:var(--navy);border:1px solid var(--border);border-radius:6px;padding:.6rem .8rem;color:var(--white);font-size:.85rem;min-height:70px;" disabled></textarea>
+        </div>
+        <button type="button" style="background:linear-gradient(135deg,var(--royal),var(--sky));color:#fff;padding:.7rem;border-radius:6px;font-weight:600;border:none;cursor:default;">${f.buttonText}</button>
+      </form>
+      <div style="margin-top:.6rem;font-size:.72rem;color:var(--muted);">⏺ ${l==='ur'?'یہ صرف نمونہ ہے — اصلی فارم ویب سائٹ پر دکھایا جائے گا':'This is a preview — the actual form will be shown on the website'}</div>
+    </div>
+  `;
+  root.appendChild(previewCard);
+
+  // Hint about phone/email
+  const hint = document.createElement('div'); hint.className='hint';
+  hint.textContent = l==='ur' ? 'فون، ای میل اور واٹس ایپ نمبر "برانڈنگ" ٹیب میں موجود ہیں — وہاں سے تبدیل کریں۔' : 'Phone, email and WhatsApp numbers are in the "Branding" tab — change them there.';
+  root.appendChild(hint);
+}
+
+</script>
+</body>
+</html>
